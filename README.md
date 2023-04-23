@@ -1,0 +1,1 @@
+This is another big project. Here I want to combine the ability to create a shopping and payment system with the ability to log in to your own account and track the order. Authorization and session are also required.
