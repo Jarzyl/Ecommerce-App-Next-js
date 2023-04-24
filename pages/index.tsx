@@ -1,7 +1,5 @@
-import HomePage from "@/components/HomePage";
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useState } from "react";
 import Product from "@/components/Product";
 import { initMongoose } from "@/lib/mongoose";
 import { findAllProducts } from "./api/products";
@@ -44,7 +42,6 @@ export default function Home({ products }: HomeProps) {
         <div className="w-full mx-auto py-6 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-gray-900">Welcome to our store!</h1>
         </div>
-        
         <div>
         <input value={phrase} onChange={e => setPhrase(e.target.value)} type="text" placeholder="Search for products..." className="bg-gray-200 w-full py-2 px-4 rounded-xl"/>
       {categoriesNames.map(categoryName => (
@@ -63,13 +60,12 @@ export default function Home({ products }: HomeProps) {
               description={product.description}
               price={product.price}
               category={product.category}
-              picture={product.picture}
-                                    />
-                  </div>
+              picture={product.picture}/>
+                </div>
               ))}
-              </div>
-              </div>
-              )}
+            </div>
+            </div>
+            )}
           </div>
         ))}
       </div>
@@ -77,7 +73,7 @@ export default function Home({ products }: HomeProps) {
       </div>
     </>
   );
-}
+};
 
 export async function getServerSideProps() {
   await initMongoose();
@@ -87,4 +83,4 @@ export async function getServerSideProps() {
       products: JSON.parse(JSON.stringify(products)),
     },
   };
-}
+};
