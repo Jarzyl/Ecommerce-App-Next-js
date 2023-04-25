@@ -1,6 +1,8 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Product from "@/components/Product";
+import { initMongoose } from "@/lib/mongoose";
+import { findAllProducts } from '../pages/api/products'
 import Layout from "@/components/Layout";
 
 interface Product {
@@ -12,25 +14,21 @@ interface Product {
   picture: string;
 }
 
-export default function Home() {
-  const [productsInfo, setProductsInfo] = useState<Product[]>([]);
-  const [phrase,setPhrase] = useState('');
+interface HomeProps {
+  products: Product[];
+}
 
-  useEffect(() => {
-    fetch('/api/products')
-      .then(response => response.json())
-      .then((json: Product[]) => setProductsInfo(json));
-  }, []);
+export default function Home({ products }: HomeProps) {
+  const [phrase, setPhrase] = useState<string>('');
 
-  const categoriesNames = Array.from(new Set(productsInfo.map(p => p.category)));
+  const categoriesNames = Array.from(new Set(products.map(p => p.category)));
 
-  let products: Product[] = [];
+  let filteredProducts = products;
+
   if (phrase) {
-    products = productsInfo.filter(p => p.name.toLowerCase().includes(phrase.toLowerCase()));
-  } else {
-    products = productsInfo;
+    filteredProducts = products.filter(p => p.name.toLowerCase().includes(phrase.toLowerCase()));
   }
-  
+
   return (
     <>
       <Head>
@@ -39,42 +37,58 @@ export default function Home() {
         <link rel="icon" type="image/jpg" href=""/>
       </Head>
       <Layout>
-      <div className="w-full justify-center items-center mx-16">
-      <div className="bg-gray-100">
-        <div className="w-full mx-auto py-6 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">Welcome to our store!</h1>
-        </div>
-        
-        <div>
-        <input value={phrase} onChange={e => setPhrase(e.target.value)} type="text" placeholder="Search for products..." className="bg-gray-200 w-full py-2 px-4 rounded-xl"/>
+      <div className="w-full mx-auto">
+  <div className="bg-white">
+    <div className="w-full mx-auto py-6 lg:px-8">
+      <h1 className="text-3xl font-bold text-indigo-300 text-center">Welcome to our store!</h1>
+    </div>
+    <div className="items-center justify-center mx-auto flex">
+    <input 
+  value={phrase} 
+  onChange={e => setPhrase(e.target.value)} 
+  type="text" 
+  placeholder="Search for products..." 
+  className="bg-gray-100 w-60 py-2 px-4 rounded-xl text-indigo-300 border-2 border-gray-100 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300" />
+      </div>
+      <div className="items-center justify-center mx-auto grid">
       {categoriesNames.map(categoryName => (
-          <div key={categoryName}>
-            {products.find(p => p.category === categoryName) && (
-              <div>
-                <h2 className="text-2xl capitalize py-5">{categoryName}</h2>
-            <div className="grid md:flex">
-            {products.filter(p => p.category === categoryName).map(product =>(
-              <div className="px-6" key={product.name}>
-              <Product
-              key={product.id}
-              _id={product.id}
-              name={product.name}
-              description={product.description}
-              price={product.price}
-              category={product.category}
-              picture={product.picture}
-                                    />
+        <div key={categoryName}>
+          {filteredProducts.find(p => p.category === categoryName) && (
+            <div>
+              <h2 className="text-2xl capitalize py-4 px-3 text-indigo-300">{categoryName}</h2>
+              <div className="grid grid-cols-2 gap-3 lg:flex">
+                {filteredProducts.filter(p => p.category === categoryName).map(product => (
+                  <div className="mx-auto" key={product.name}>
+                    <Product
+                      key={product.id}
+                      _id={product.id}
+                      name={product.name}
+                      description={product.description}
+                      price={product.price}
+                      category={product.category}
+                      picture={product.picture} />
                   </div>
-              ))}
+                ))}
               </div>
-              </div>
-              )}
-          </div>
-        ))}
+            </div>
+          )}
+        </div>
+      ))}
+      </div>
+  </div>
 </div>
-      </div>
-      </div>
+
       </Layout>
     </>
   );
-}
+};
+
+export async function getServerSideProps() {
+  await initMongoose();
+  const products = await findAllProducts();
+  return {
+    props: {
+      products: JSON.parse(JSON.stringify(products)),
+    },
+  };
+};
