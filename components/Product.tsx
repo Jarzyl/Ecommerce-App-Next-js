@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { ProductsContext } from "./ProductsConxtext";
+import Image from "next/image";
 
 interface ProductProps {
   _id: string;
@@ -20,7 +21,7 @@ export default function Product({ _id, name, price, description, picture }: Prod
   return (
     <div className="w-44 md:w-52 xl:w-60 bg-white border-2">
       <div className="p-4">
-        <img src={picture} alt=""/>
+        <Image src={picture} alt="" width={200} height={200}/>
       </div>
         <h3 className="font-bold text-lg text-left ml-3">{name}</h3>
       <p className="text-sm mt-1 ml-3 text-gray-500">{description}</p>

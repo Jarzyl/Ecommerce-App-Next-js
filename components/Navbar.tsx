@@ -86,13 +86,13 @@ export default function Navbar() {
           <div className='py-3 flex flex-col text-center'>
             <ul className='uppercase text-indigo-300 dark:text-teal-500'>
               <li onClick={() => setNav(false)} className='py-4'>
-              <a href='/'>Home</a>
+              <Link href='/'>Home</Link>
               </li>
               <li onClick={() => setNav(false)} className='py-4'>
-              <a href='/Category'>Category</a>
+              <Link href='/Category'>Category</Link>
               </li>
               <li onClick={() => setNav(false)} className='py-4'>
-              <a href='/Contact'>Contact</a>
+              <Link href='/Contact'>Contact</Link>
               </li>
             </ul>
             <div className='pt-14'>
