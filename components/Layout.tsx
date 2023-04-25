@@ -1,27 +1,20 @@
-// import {useContext, useEffect, useState} from "react";
-// // import {ProductsContext} from "./ProductsContext";
-// import Navbar from "./Navbar";
+import { ReactNode } from "react";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
-// export default function Layout({children}) {
-// //   const {setSelectedProducts} = useContext(ProductsContext);
-// //   const [success,setSuccess] = useState(false);
-// //   useEffect(() => {
-// //     if (window.location.href.includes('success')) {
-// //       setSelectedProducts([]);
-// //       setSuccess(true);
-// //     }
-// //   }, []);
-//   return (
-//     <div>
-//         <Navbar />
-//       <div className="p-5">
-//         {success && (
-//           <div className="mb-5 bg-green-400 text-white text-lg p-5 rounded-xl">
-//             Thanks for your order!
-//           </div>
-//         )}
-//         {children}
-//       </div>
-//     </div>
-//   );
-// }
+interface LayoutProps {
+  children: ReactNode;
+}
+
+export default function Layout({ children }: LayoutProps) {
+
+  return (
+    <>
+    <div className="mb-6">
+      <Navbar />
+      {children}
+    </div>
+      <Footer/>
+      </>
+  );
+}

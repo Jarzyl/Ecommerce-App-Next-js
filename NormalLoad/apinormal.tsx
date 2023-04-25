@@ -61,7 +61,7 @@ export default function Home() {
               <div className="px-6">
               <Product
               key={product.id}
-              id={product.id}
+              _id={product.id}
               name={product.name}
               description={product.description}
               price={product.price}
