@@ -4,7 +4,7 @@ import Product from "@/components/Product";
 import { initMongoose } from "@/lib/mongoose";
 import { findAllProducts } from '../pages/api/products'
 import Layout from "@/components/Layout";
-import Images from "@/components/Images";
+import Link from 'next/link';
 
 interface Product {
   id: string;
@@ -15,22 +15,24 @@ interface Product {
   picture: string;
 }
 
-interface HomeProps {
+interface CategoryProps {
   products: Product[];
 }
 
-export default function Home({ products }: HomeProps) {
+export default function Category({ products }: CategoryProps) {
   const [phrase, setPhrase] = useState<string>('');
+  const [category, setCategory] = useState<string>('all');
 
-  const categoriesNames = Array.from(new Set(products.map(p => p.category)));
+  const categoriesNames = ['all', 'mobiles', 'audio', 'laptops'];
 
   let filteredProducts = products;
 
   if (phrase) {
-    filteredProducts = products.filter(p => 
-      p.name.toLowerCase().includes(phrase.toLowerCase()) || 
-      p.category.toLowerCase().includes(phrase.toLowerCase())
-    );    
+    filteredProducts = products.filter(p => p.name.toLowerCase().includes(phrase.toLowerCase()));
+  }
+
+  if (category !== 'all') {
+    filteredProducts = filteredProducts.filter(p => p.category === category);
   }
 
   return (
@@ -41,27 +43,31 @@ export default function Home({ products }: HomeProps) {
         <link rel="icon" type="image/jpg" href=""/>
       </Head>
       <Layout>
-      <div className="w-full mx-auto">
-  <div className="bg-white">
-    <div className="w-full mx-auto py-6 lg:px-8">
-      <h1 className="text-2xl md:text-3xl font-bold text-indigo-300 text-center">Welcome to our store!</h1>
-      <h2 className="md:text-2xl font-bold text-indigo-300 text-center mt-3">With us you will increase the efficiency and quality of work and take care of your health and comfort!</h2>
-    </div>
-    <Images/>
-
-      <div className="mt-3">
-      <h3 className="text-2xl md:text-3xl text-indigo-300 text-center">Search by product name or category!</h3>
-      </div>
-    <div className="items-center justify-center mx-auto flex mt-6">
-    <input 
-  value={phrase} 
-  onChange={e => setPhrase(e.target.value)} 
-  type="text" 
-  placeholder="Search for products..." 
-  className="bg-gray-100 w-60 py-2 px-4 rounded-xl text-indigo-300 border-2 border-gray-100 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300" />
-      </div>
-      <div className="items-center justify-center mx-auto grid">
-      {categoriesNames.map(categoryName => (
+        <div className="w-full mx-auto">
+          <div className="bg-white">
+            <div className="w-full mx-auto py-6 lg:px-8">
+              <h1 className="text-3xl font-bold text-indigo-300 text-center">Search by category</h1>
+            </div>
+            <div className="items-center justify-center mx-auto flex">
+            <div className="flex">
+            {categoriesNames.map(categoryName => (
+                <button
+                    key={categoryName}
+                    className={`text-lg mr-4 text-gray-400 hover:text-indigo-400 capitalize p-0.5 ${category === categoryName ? 'font-bold text-indigo-300' : ''}`}
+                    onClick={() => setCategory(categoryName)}
+                >
+                    {categoryName}
+                </button>
+                ))}
+          </div>
+            </div>
+            <div className="items-center justify-center mx-auto grid">
+              {filteredProducts.length === 0 && (
+                <p className="text-gray-400 text-center py-8">
+                  No products found for the selected category and search phrase.
+                </p>
+              )}
+              {categoriesNames.map(categoryName => (
         <div key={categoryName}>
           {filteredProducts.find(p => p.category === categoryName) && (
             <div>
@@ -102,3 +108,4 @@ export async function getServerSideProps() {
     },
   };
 };
+

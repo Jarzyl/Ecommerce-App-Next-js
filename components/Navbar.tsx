@@ -3,8 +3,16 @@ import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { ProductsContext } from "./ProductsConxtext";
 import { BsCart } from 'react-icons/bs'
-import { AiOutlineHome } from 'react-icons/ai'
 import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from 'react-icons/ai';
+
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  picture: string;
+}
 
 export default function Navbar() {
   const router = useRouter();
@@ -23,44 +31,43 @@ export default function Navbar() {
   };
 
     return (
-        <nav className="sticky top-0 bg-white p-5 w-full flex border-t border-gray-200 justify-end md:justify-center items-center md:space-x-12 text-gray-400">
-          <ul className='hidden text-lg xl:text-2xl md:flex xl:flex xl:mt-2 xl:mr-10'>
-        <Link href={"/"}>
-            <div
-          className={
-            (path === "/" ? "text-emerald-500 mr-3" : "") +
-            " flex justify-center items-center mr-3"}>
-          <AiOutlineHome size={25} className="mr-4"/>
-          <span>Home</span>
-        </div>
-      </Link>
-      <Link href={"/Category"}>
-        <div
-          className={
-            (path === "/Category" ? "text-emerald-500 mr-3" : "") +
-            " flex justify-center items-center mr-3"}>Category
-        </div>
-      </Link>
-      <Link href={"/Contact"}>
-        <div
-          className={
-            (path === "/Contact" ? "text-emerald-500 mr-3" : "") +
-            " flex justify-center items-center mr-3"}>Contact
-        </div>
-      </Link>
-        <div onClick={handleCart}
-          className="flex justify-center items-center mr-3">
-          <BsCart size={25} className="mr-4"/>
-          <span>Cart {selectedProducts.length}</span>
-        </div>
-      </ul>
+        <nav className="sticky top-0 bg-white p-5 w-full flex border-t border-gray-200 justify-end md:justify-center items-center text-gray-400 shadow-md h-16">
+  <ul className='hidden text-lg xl:text-2xl md:flex xl:flex flex-1 justify-center ml-16'>
+    <Link href={"/"}>
+      <div
+        className={
+          (path === "/" ? "text-indigo-400 mr-6" : "") +
+          " flex justify-center items-center mr-6"}>
+        <span>Home</span>
+      </div>
+    </Link>
+    <Link href={"/Category"}>
+      <div
+        className={
+          (path === "/Category" ? "text-indigo-400 mr-6" : "") +
+          " flex justify-center items-center mr-6"}>Category
+      </div>
+    </Link>
+    <Link href={"/Contact"}>
+      <div
+        className={
+          (path === "/Contact" ? "text-indigo-400 mr-6" : "") +
+          " flex justify-center items-center mr-6"}>Contact
+      </div>
+    </Link>
+  </ul>
+  <ul className="hidden md:flex justify-end items-center">
+      <div onClick={handleCart} className="relative flex justify-center items-center cursor-pointer">
+      <BsCart size={25} className="mr-2"/>
+      <span className="absolute top-0 right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-gray-300 transform translate-x-1/2 -translate-y-1/2 bg-indigo-400 rounded-full">{selectedProducts.length}</span>
+    </div>
+  </ul>
       
       {/* Hamburger and Cart Icon */}
-      <div onClick={handleCart}
-          className="md:hidden flex mr-3">
-          <BsCart size={25} className="mr-2"/>
-          <span>{selectedProducts.length}</span>
-        </div>
+      <div onClick={handleCart} className="md:hidden relative flex justify-center items-center cursor-pointer">
+      <BsCart size={25} className="mr-2"/>
+      <span className="absolute top-0 right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-gray-300 transform translate-x-1/2 -translate-y-1/2 bg-indigo-400 rounded-full">{selectedProducts.length}</span>
+    </div>
       <div className='md:hidden justify-end hover:scale-105 duration-200 ml-2' onClick={handleNav}><AiOutlineMenu size={25}/>
           </div>
 
@@ -71,7 +78,7 @@ export default function Navbar() {
           nav ? 'md:hidden fixed left-0 top-0 w-full h-screen bg-black/70' : ''
         }>
 
-        {/* Side Drawer Menu */}
+        {/* Side Menu */}
         <div
           className={
             nav
@@ -99,7 +106,6 @@ export default function Navbar() {
               <p className='uppercase tracking-widest text-indigo-300 dark:text-teal-500'>
                 Stay in Touch</p>
               <div className='flex items-center justify-between my-4 w-full sm:w-[80%] text-indigo-300 dark:text-teal-500'>
-                
                 <Link href='mailto:electronics.shop@gmail.com'>
                   <div
                     onClick={() => setNav(!nav)}
@@ -120,7 +126,7 @@ export default function Navbar() {
           cart ? ' fixed right-0 top-0 w-full h-screen bg-black/70' : ''
         }>
 
-        {/* Side Drawer Menu */}
+        {/* Side Menu */}
         <div
           className={
             cart
@@ -136,9 +142,20 @@ export default function Navbar() {
               
             </div>
           </div>
-          <div className='py-3 flex flex-col text-center'>
+          {/* <div className='py-3 flex flex-col text-center'>
             
-          </div>
+          <ul className="py-3">
+  {selectedProducts.map(product => (
+    <li key={product.id} className="mb-2">
+      <div className="flex justify-between">
+        <div>{product.name}</div>
+        <div>{product.price}</div>
+      </div>
+    </li>
+  ))}
+</ul>
+
+          </div> */}
         </div>
       </div>
     </nav>

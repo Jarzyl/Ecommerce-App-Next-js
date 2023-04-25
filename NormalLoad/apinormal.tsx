@@ -1,4 +1,4 @@
-import HomePage from "@/components/HomePage";
+import HomePage from "@/components/Images";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import Image from "next/image";
