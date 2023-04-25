@@ -16,7 +16,6 @@ export default function Home() {
   const [productsInfo, setProductsInfo] = useState<Product[]>([]);
   const [phrase,setPhrase] = useState('');
 
-
   useEffect(() => {
     fetch('/api/products')
       .then(response => response.json())
@@ -24,8 +23,6 @@ export default function Home() {
   }, []);
 
   const categoriesNames = Array.from(new Set(productsInfo.map(p => p.category)));
-
-  console.log(categoriesNames)
 
   let products: Product[] = [];
   if (phrase) {
@@ -57,7 +54,7 @@ export default function Home() {
                 <h2 className="text-2xl capitalize py-5">{categoryName}</h2>
             <div className="grid md:flex">
             {products.filter(p => p.category === categoryName).map(product =>(
-              <div className="px-6">
+              <div className="px-6" key={product.name}>
               <Product
               key={product.id}
               _id={product.id}
