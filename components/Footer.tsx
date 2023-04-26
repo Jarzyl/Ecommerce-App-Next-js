@@ -19,25 +19,25 @@ function Footer () {
   }
 
     return (
-      <footer className="bg-gray-100 dark:bg-slate-200 text-indigo-400 dark:text-teal-500 text-center">
-        <div className="container px-4 py-8 mx-auto">
+      <footer className="bg-gray-100 dark:bg-slate-200 text-indigo-400 dark:text-teal-500 text-center mt-20 lg:mt-60">
+        <div className="px-4 py-6 mx-auto">
         <div className="flex justify-center">
   <div className="text-xl xl:text-3xl flex flex-col items-center">
     <div className="self-start">
       Get a 10% discount on your first purchase by subscribing to the newsletter!
     </div>
-        <div className="grid gap-2 md:flex items-center mt-5 md:mt-10">
+        <div className="grid gap-2 md:flex items-center mt-5 md:mt-10 text-xl">
           <input
             type="email"
             placeholder="your.email@xyz.com"
             ref={emailInputRef}
-            className="w-60 mx-2 text-lg focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300 rounded-lg px-2"
+            className="w-60 mx-2 text-lg focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300 rounded-lg px-2 mb-2 md:mb-0"
           />
           <div>
           <button
             type="submit"
             onClick={handleSubscribe}
-            className="text-lg w-32 h-8 font-bold text-white bg-indigo-400 rounded-lg hover:bg-indigo-500 focus:outline-none mx-2">Subscribe!
+            className="text-lg w-28 h-7 font-bold text-white bg-indigo-400 rounded-lg hover:bg-indigo-500 focus:outline-none mx-2">Subscribe!
           </button>
           </div>
         </div>
@@ -46,7 +46,7 @@ function Footer () {
         
       </div>
       <div className="bg-gray-100 text-lg">
-      <div className="flex justify-center mt-0 md:mt-3 pb-4 text-left">
+      <div className="flex justify-center mt-0 md:mt-3 pb-3 text-left">
           <ul className="grid grid-cols-2 md:flex">
             <li className="md:mr-6 cursor-pointer">About</li>
             <li className="md:mr-6 cursor-pointer">Our store</li>

@@ -31,7 +31,7 @@ export default function Navbar() {
   };
 
     return (
-        <nav className="sticky top-0 bg-white p-5 w-full flex border-t border-gray-200 justify-end md:justify-center items-center text-gray-400 shadow-md h-16">
+        <nav className="sticky top-0 bg-white p-5 w-full flex border-t border-gray-200 justify-end md:justify-center items-center text-gray-400 shadow-md h-16 z-50">
   <ul className='hidden text-lg xl:text-2xl md:flex xl:flex flex-1 justify-center ml-16'>
     <Link href={"/"}>
       <div

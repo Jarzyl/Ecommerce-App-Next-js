@@ -103,3 +103,7 @@ export default function Home() {
     </>
   );
 }
+
+  // function removeProduct(): void {
+  //   setSelectedProducts(prev => prev.filter(id => id = _id));
+  // } // pozwala wyczyścić cały koszyk np

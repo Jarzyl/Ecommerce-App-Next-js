@@ -30,11 +30,11 @@ export default function ContactForm() {
         <link rel="icon" type="image/jpg" href=""/>
       </Head>
     <Layout>
-    <div className="w-full mx-auto py-4 lg:px-8">
-      <h1 className="text-3xl font-bold text-indigo-300 text-center mt-10">Contact Us</h1>
-      <h2 className="text-2xl font-bold text-indigo-300 text-center mt-4">If you have any problem or question - write to us - we will help!</h2>
+    <div className="w-full mx-auto py-4">
+      <h1 className="text-3xl font-bold text-indigo-300 text-center">Contact Us</h1>
+      <h2 className="text-xl md:text-2xl font-bold text-indigo-300 text-center mt-4">If you have any problem or question - write to us - we will help!</h2>
     </div>
-    <form onSubmit={handleSubmit(onSubmit)} className="w-80 mx-auto mt-10 border-2 p-3 rounded-xl">
+    <form onSubmit={handleSubmit(onSubmit)} className="w-80 mx-auto mt-3 md:mt-10 border-2 p-3 rounded-xl">
       <div className="mb-4">
         <label htmlFor="name" className="block mb-2 font-bold text-indigo-300">
           Name
