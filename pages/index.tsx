@@ -5,9 +5,10 @@ import { initMongoose } from "@/lib/mongoose";
 import { findAllProducts } from '../pages/api/products'
 import Layout from "@/components/Layout";
 import Images from "@/components/Images";
+import ProductTwo from "@/components/ProductTwo";
 
 interface Product {
-  id: string;
+  _id: string;
   name: string;
   description: string;
   price: number;
@@ -74,9 +75,9 @@ export default function Home({ products }: HomeProps) {
               <div className="grid grid-cols-2 gap-2 lg:flex">
                 {filteredProducts.filter(p => p.category === categoryName).map(product => (
                   <div className="mx-auto" key={product.name}>
-                    <Product
-                      key={product.id}
-                      _id={product.id}
+                    <ProductTwo
+                      key={product._id}
+                      _id={product._id}
                       name={product.name}
                       description={product.description}
                       price={product.price}

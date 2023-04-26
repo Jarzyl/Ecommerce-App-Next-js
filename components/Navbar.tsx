@@ -2,11 +2,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { ProductsContext } from "./ProductsConxtext";
+import { CartContext } from "./CartContext";
 import { BsCart } from 'react-icons/bs'
 import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from 'react-icons/ai';
 
 interface Product {
-  id: string;
+  _id: string;
   name: string;
   description: string;
   price: number;
@@ -17,7 +18,7 @@ interface Product {
 export default function Navbar() {
   const router = useRouter();
   const path = router.pathname;
-  const {selectedProducts} = useContext(ProductsContext);
+  const {selectedProducts} = useContext(CartContext);
 
   const [nav, setNav] = useState(false);
   const [cart, setCart] = useState(false);
@@ -139,23 +140,27 @@ export default function Navbar() {
               </div>
               <div onClick={handleCart} className='rounded-full bg-gray-100 dark:bg-slate-200 shadow-md dark:shadow-teal-500 p-2.5 cursor-pointer'><AiOutlineClose/>
               </div>
-              
+              <div className="bg-blue-500">
+              <Link href='/Cart'>click</Link>
+              </div>
+              <div className='py-3 flex flex-col text-center'>
+  <ul className="py-3">
+    {selectedProducts.map(product => (
+      product && product._id ? (
+        <li key={product._id} className="mb-2">
+          <div className="flex justify-between">
+            <div>{product.name}</div>
+            <div>{product.price}</div>
+          </div>
+        </li>
+      ) : null
+    ))}
+  </ul>
+</div>
+
             </div>
           </div>
-          {/* <div className='py-3 flex flex-col text-center'>
-            
-          <ul className="py-3">
-  {selectedProducts.map(product => (
-    <li key={product.id} className="mb-2">
-      <div className="flex justify-between">
-        <div>{product.name}</div>
-        <div>{product.price}</div>
-      </div>
-    </li>
-  ))}
-</ul>
-
-          </div> */}
+          
         </div>
       </div>
     </nav>
