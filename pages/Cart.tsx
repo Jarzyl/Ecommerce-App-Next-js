@@ -4,6 +4,7 @@ import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { CartContext } from "@/components/CartContext";
 import Layout from "@/components/Layout";
+import { useRouter } from 'next/router';
 
 interface Product {
     _id: string;
@@ -17,13 +18,14 @@ interface Product {
 export default function CartPage() {
     const {selectedProducts, addProduct, removeProduct} = useContext(CartContext);
     const [products, setProducts] = useState<Product[]>([]);
-
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [city, setCity] = useState('');
     const [postalCode, setPostalCode] = useState('');
     const [streetAddress, setStreetAddress] = useState('');
     const [country, setCountry] = useState('');
+    const router = useRouter();
+    const { success, canceled } = router.query;
 
     useEffect(() => {
         if (selectedProducts.length > 0) {
@@ -44,11 +46,43 @@ export default function CartPage() {
         removeProduct(id);
     }
 
+    async function goToPayment() {
+        const response = await axios.post('/api/checkout', {
+        name,email,city,postalCode,streetAddress,country,
+        selectedProducts,
+        });
+        if (response.data.url) {
+        window.location = response.data.url;
+        }
+    }
+
     let total = 0;
         for (const _id of selectedProducts) {
             const price = products.find(p => p._id === _id)?.price || 0;
             total += price;
     }
+
+    if (success) {
+        return (
+          <Layout>
+            <div className="grid text-center justify-center items-center mt-28">
+              <h1 className="text-2xl text-green-500 mb-10">Thanks for your order!</h1>
+              <p className="text-2xl text-green-500">We will email you when your order will be sent.</p>
+            </div>
+          </Layout>
+        );
+      }
+    
+      if (canceled) {
+        return (
+          <Layout>
+            <div className="grid text-center justify-center items-center mt-28">
+              <h1 className="text-2xl text-red-500 mb-10">Payment canceled!</h1>
+              <p className="text-2xl text-red-500">Your payment has not been processed. Try again.</p>
+            </div>
+          </Layout>
+        );
+      }
 
     return (
         <>
@@ -105,7 +139,6 @@ export default function CartPage() {
         <div className="flex justify-center items-center mx-auto w-full">
             <div className="flex flex-col">
             <h2>Order information</h2>
-            <form method="post" action="/api/checkout">
             <div className="flex flex-col mt-5">
             <input 
             type="text" 
@@ -118,7 +151,7 @@ export default function CartPage() {
             type="email" 
             placeholder="Email"
             value={email}
-            name="name"
+            name="email"
             onChange={ev => setEmail(ev.target.value)}
             className="border-2 py-2 my-1 rounded-xl"/>
             <div className="flex">
@@ -126,14 +159,14 @@ export default function CartPage() {
             type="text" 
             placeholder="City"
             value={city}
-            name="name"
+            name="city"
             onChange={ev => setCity(ev.target.value)}
             className="border-2 py-2 my-1 rounded-xl mr-2"/>
             <input 
             type="text" 
             placeholder="Postal Code"
             value={postalCode}
-            name="name"
+            name="postalcode"
             onChange={ev => setPostalCode(ev.target.value)}
             className="border-2 py-2 my-1 rounded-xl"/>
             </div>
@@ -141,21 +174,21 @@ export default function CartPage() {
             type="text" 
             placeholder="Street Address"
             value={streetAddress}
-            name="name"
+            name="address"
             onChange={ev => setStreetAddress(ev.target.value)}
             className="border-2 py-2 my-1 rounded-xl"/>
             <input 
             type="text" 
             placeholder="Country"
             value={country}
-            name="name"
+            name="country"
             onChange={ev => setCountry(ev.target.value)}
             className="border-2 py-2 my-1 rounded-xl"/>
             </div>
             <div className="mt-3 bg-indigo-300 border-2 rounded-md">
-            <button type="submit">Continue to payment</button>
+            <button 
+            onClick={goToPayment}>Continue to payment</button>
             </div>
-            </form>
             </div>
             </div>
             )}
