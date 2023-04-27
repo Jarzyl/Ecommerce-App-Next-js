@@ -1,19 +1,9 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
-import { ProductsContext } from "./ProductsConxtext";
 import { CartContext } from "./CartContext";
 import { BsCart } from 'react-icons/bs'
 import { AiOutlineClose, AiOutlineMail, AiOutlineMenu } from 'react-icons/ai';
-
-interface Product {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  picture: string;
-}
 
 export default function Navbar() {
   const router = useRouter();
@@ -143,24 +133,8 @@ export default function Navbar() {
               <div className="bg-blue-500">
               <Link href='/Cart'>click</Link>
               </div>
-              <div className='py-3 flex flex-col text-center'>
-  <ul className="py-3">
-    {selectedProducts.map(product => (
-      product && product._id ? (
-        <li key={product._id} className="mb-2">
-          <div className="flex justify-between">
-            <div>{product.name}</div>
-            <div>{product.price}</div>
-          </div>
-        </li>
-      ) : null
-    ))}
-  </ul>
-</div>
-
             </div>
           </div>
-          
         </div>
       </div>
     </nav>

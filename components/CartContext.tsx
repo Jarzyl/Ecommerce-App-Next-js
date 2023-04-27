@@ -24,35 +24,33 @@ export function CartContextProvider({children}: {children: React.ReactNode}) {
     }
   }, []);
   
-    
-    useEffect(() => {
-      if (selectedProducts?.length > 0) {
-        localStorage.setItem('cart', JSON.stringify(selectedProducts));
-      }
-    }, [selectedProducts]);
+  useEffect(() => {
+    if (selectedProducts?.length > 0) {
+      localStorage.setItem('cart', JSON.stringify(selectedProducts));
+    }
+  }, [selectedProducts]);
 
     function addProduct(_id: string) {
-  if (_id && typeof _id === 'string') {
-    setSelectedProducts(prev => [...prev, _id]);
-  } else {
-    console.log('Invalid product id');
-  }
-}
-
+      if (_id && typeof _id === 'string') {
+        setSelectedProducts(prev => [...prev, _id]);
+      } else {
+        console.log('Invalid product id');
+      };
+    };
 
     function removeProduct(_id: string) {
       setSelectedProducts(prev => {
-        const pos = prev.indexOf(_id);
-        if (pos !== -1) {
-          return prev.filter((value,index) => index !== pos);
+        const positionId = prev.indexOf(_id);
+        if (positionId !== -1) {
+          return prev.filter((value,index) => index !== positionId);
         }
         return prev;
       });
-    }
+    };
 
     return (
-        <CartContext.Provider value={{selectedProducts,setSelectedProducts, addProduct, removeProduct }}>
+        <CartContext.Provider value={{selectedProducts, setSelectedProducts, addProduct, removeProduct }}>
           {children}
         </CartContext.Provider>
       );
-}
+};

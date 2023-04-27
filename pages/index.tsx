@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { useState } from "react";
-import Product from "@/components/Product";
 import { initMongoose } from "@/lib/mongoose";
 import { findAllProducts } from '../pages/api/products'
 import Layout from "@/components/Layout";

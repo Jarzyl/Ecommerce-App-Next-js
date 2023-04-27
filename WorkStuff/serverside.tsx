@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
-import Product from "@/components/Product";
+import Product from "@/WorkStuff/Product";
 import { initMongoose } from "@/lib/mongoose";
 import { findAllProducts } from '../pages/api/products'
 import Navbar from '@/components/Navbar'

@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import { ProductsContext } from "./ProductsConxtext";
 import Image from "next/image";
 import { CartContext } from "./CartContext";
 

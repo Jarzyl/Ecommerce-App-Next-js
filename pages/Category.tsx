@@ -1,13 +1,12 @@
 import Head from "next/head";
 import { useState } from "react";
-import Product from "@/components/Product";
 import { initMongoose } from "@/lib/mongoose";
 import { findAllProducts } from '../pages/api/products'
 import Layout from "@/components/Layout";
-import Link from 'next/link';
+import ProductTwo from "@/components/ProductTwo";
 
 interface Product {
-  id: string;
+  _id: string;
   name: string;
   description: string;
   price: number;
@@ -74,9 +73,9 @@ export default function Category({ products }: CategoryProps) {
               <div className="grid grid-cols-2 gap-2 py-2 lg:flex">
                 {filteredProducts.filter(p => p.category === categoryName).map(product => (
                   <div className="mx-auto" key={product.name}>
-                    <Product
-                      key={product.id}
-                      _id={product.id}
+                    <ProductTwo
+                      key={product._id}
+                      _id={product._id}
                       name={product.name}
                       description={product.description}
                       price={product.price}

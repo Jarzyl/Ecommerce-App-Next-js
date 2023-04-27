@@ -1,6 +1,6 @@
-import Layout from '@/components/Layout';
 import Head from 'next/head';
 import { useForm } from 'react-hook-form';
+import Layout from '@/components/Layout';
 
 interface FormInputs {
   name: string;
