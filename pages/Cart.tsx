@@ -1,10 +1,10 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from 'next/router';
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { CartContext } from "@/components/CartContext";
 import Layout from "@/components/Layout";
-import { useRouter } from 'next/router';
 
 interface Product {
     _id: string;
@@ -25,7 +25,7 @@ export default function CartPage() {
     const [streetAddress, setStreetAddress] = useState('');
     const [country, setCountry] = useState('');
     const router = useRouter();
-    const { success, canceled } = router.query;
+    const {success, canceled} = router.query;
 
     useEffect(() => {
         if (selectedProducts.length > 0) {
@@ -64,25 +64,25 @@ export default function CartPage() {
 
     if (success) {
         return (
-          <Layout>
+        <Layout>
             <div className="grid text-center justify-center items-center mt-28">
-              <h1 className="text-2xl text-green-500 mb-10">Thanks for your order!</h1>
-              <p className="text-2xl text-green-500">We will email you when your order will be sent.</p>
+            <h1 className="text-2xl text-green-500 mb-10">Thanks for your order!</h1>
+            <p className="text-2xl text-green-500">We will email you when your order will be sent.</p>
             </div>
-          </Layout>
+        </Layout>
         );
-      }
-    
-      if (canceled) {
+    }
+        
+    if (canceled) {
         return (
-          <Layout>
+        <Layout>
             <div className="grid text-center justify-center items-center mt-28">
-              <h1 className="text-2xl text-red-500 mb-10">Payment canceled!</h1>
-              <p className="text-2xl text-red-500">Your payment has not been processed. Try again.</p>
+            <h1 className="text-2xl text-red-500 mb-10">Payment canceled!</h1>
+            <p className="text-2xl text-red-500">Your payment has not been processed. Try again.</p>
             </div>
-          </Layout>
+        </Layout>
         );
-      }
+    }
 
     return (
         <>
@@ -92,68 +92,74 @@ export default function CartPage() {
             <link rel="icon" type="image/jpg" href=""/>
             </Head>
             <Layout>
-        <div className="w-full bg-white h-full justify-center items-center mt-20">
+        <div className="w-full bg-white h-full justify-center items-center mt-6">
+        <div className="flex justify-center ml-0 md:justify-start md:ml-32">
+            <p className="text-2xl md:text-3xl xl:text-4xl text-indigo-400 font-bold mt-8 mb-8 md:mb-0">Your Cart</p>
+        </div>
             <div className="grid md:grid-cols-2">
             <div className="flex justify-center items-center">
-            {!selectedProducts?.length && (<h1>Your cart is empty</h1>)}
+            {!selectedProducts?.length && (
+            <h1 className="text-xl font-medium mt-10 text-center text-red-500">Your cart is empty!</h1>)}
     {products && products.length > 0 && (
-    <table className="w-80">
+    <table className="w-80 mx-auto">
     <thead>
-    <h2 className="mb-3">Cart</h2>
-    <tr>
-        <th className="">Product</th>
-        <th className="">Quantity</th>
-        <th className="">Price</th>
+    
+    <tr className="text-indigo-400">
+        <th className="flex">Product</th>
+        <th className="w-1/3">Quantity</th>
+        <th>Price</th>
     </tr>
     </thead>
     <tbody>
         {products.map((product: Product) => (
         <tr key={product._id}>
-            <td>{product.name}
-                <Image src={product.picture} alt="" className="object-contain max-h-full max-w-full" width={150} height={100} />
+            <td className="text-gray-500 font-bold">{product.name}
+                <Image src={product.picture} alt="product photo" className="object-contain max-h-full max-w-full mb-3" width={150} height={100} />
                 </td>
             <td>
                 <button 
                 onClick={() => addLess(product._id)}
-                className="bg-indigo-400 text-white  w-7 h-7 rounded-lg mr-2">-</button>
+                className="bg-indigo-400 text-white w-6 h-6 rounded-lg mr-2">-</button>
             {selectedProducts.filter(id => id === product._id).length}
                 <button 
                 onClick={() => addMore(product._id)}
-                className="bg-indigo-400 text-white  w-7 h-7 rounded-lg ml-2">+</button>
+                className="bg-indigo-400 text-white w-6 h-6 rounded-lg ml-2">+</button>
             </td>
-            <td className="mt-3">
+            <td className="font-medium text-gray-400">
             {selectedProducts.filter(id => id === product._id).length * product.price}$
             </td>
             </tr>  
             ))}
-            <tr>
+            <tr className="font-bold">
                 <td></td>
-                <td></td>
-                <td>{total}$</td>
+                <td className="text-gray-400">Total</td>
+                <td className="text-indigo-400">{total}$</td>
                 </tr>
             </tbody>
             </table>
         )}
         </div>
         {!!selectedProducts.length && (
-        <div className="flex justify-center items-center mx-auto w-full">
-            <div className="flex flex-col">
-            <h2>Order information</h2>
-            <div className="flex flex-col mt-5">
+        <div className="flex justify-center items-center mx-auto w-full mt-16 md:mt-0">
+            <div className="flex flex-col text-indigo-400">
+            <p className="text-2xl md:text-3xl xl:text-4xl text-center font-bold">Order information</p>
+            <div className="flex flex-col mt-5 w-80 mx-auto">
             <input 
             type="text" 
             placeholder="Name"
             value={name}
             name="name"
             onChange={ev => setName(ev.target.value)} 
-            className="border-2 py-2 my-1 rounded-xl"/>
+            className="border-2 py-2 my-1 p-2 rounded-xl focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
+            required/>
             <input 
             type="email" 
             placeholder="Email"
             value={email}
             name="email"
             onChange={ev => setEmail(ev.target.value)}
-            className="border-2 py-2 my-1 rounded-xl"/>
+            className="border-2 py-2 my-1 p-2 rounded-xl focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
+            required/>
             <div className="flex">
             <input 
             type="text" 
@@ -161,14 +167,16 @@ export default function CartPage() {
             value={city}
             name="city"
             onChange={ev => setCity(ev.target.value)}
-            className="border-2 py-2 my-1 rounded-xl mr-2"/>
+            className="border-2 py-2 my-1 p-2 rounded-xl mr-4 w-40 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
+            required/>
             <input 
             type="text" 
             placeholder="Postal Code"
             value={postalCode}
             name="postalcode"
             onChange={ev => setPostalCode(ev.target.value)}
-            className="border-2 py-2 my-1 rounded-xl"/>
+            className="border-2 py-2 my-1 p-2 rounded-xl w-36 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
+            required/>
             </div>
             <input 
             type="text" 
@@ -176,17 +184,19 @@ export default function CartPage() {
             value={streetAddress}
             name="address"
             onChange={ev => setStreetAddress(ev.target.value)}
-            className="border-2 py-2 my-1 rounded-xl"/>
+            className="border-2 py-2 my-1 p-2 rounded-xl focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
+            required/>
             <input 
             type="text" 
             placeholder="Country"
             value={country}
             name="country"
             onChange={ev => setCountry(ev.target.value)}
-            className="border-2 py-2 my-1 rounded-xl"/>
+            className="border-2 py-2 my-1 p-2 rounded-xl focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
+            required/>
             </div>
-            <div className="mt-3 bg-indigo-300 border-2 rounded-md">
-            <button 
+            <div className="mt-6 bg-indigo-400 border-2 rounded-md flex justify-center items-center w-52 mx-auto text-white font-medium">
+            <button
             onClick={goToPayment}>Continue to payment</button>
             </div>
             </div>

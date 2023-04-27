@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { useState } from "react";
 import { initMongoose } from "@/lib/mongoose";
-import { findAllProducts } from '../pages/api/products'
+import { findAllProducts } from './api/products'
 import Layout from "@/components/Layout";
-import ProductTwo from "@/components/ProductTwo";
+import ProductCart from "@/components/ProductCart";
 
 interface Product {
   _id: string;
@@ -45,7 +45,7 @@ export default function Category({ products }: CategoryProps) {
         <div className="w-full mx-auto">
           <div className="bg-white">
             <div className="w-full mx-auto py-6">
-              <h1 className="text-3xl font-bold text-indigo-300 text-center">Search by category</h1>
+              <h1 className="text-3xl font-bold text-indigo-400 text-center">Search by category</h1>
             </div>
             <div className="items-center justify-center mx-auto flex">
             <div className="grid grid-cols-4 md:flex">
@@ -70,10 +70,10 @@ export default function Category({ products }: CategoryProps) {
         <div key={categoryName}>
           {filteredProducts.find(p => p.category === categoryName) && (
             <div>
-              <div className="grid grid-cols-2 gap-2 py-2 lg:flex">
+              <div className="grid grid-cols-2 gap-1 md:gap-3 lg:gap-5 py-2 lg:flex">
                 {filteredProducts.filter(p => p.category === categoryName).map(product => (
                   <div className="mx-auto" key={product.name}>
-                    <ProductTwo
+                    <ProductCart
                       key={product._id}
                       _id={product._id}
                       name={product.name}

@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Layout from '@/components/Layout';
 
 interface FormInputs {
@@ -18,7 +20,20 @@ export default function ContactForm() {
   } = useForm<FormInputs>();
 
   const onSubmit = (data: FormInputs) => {
-    alert('Your message was sent!');
+    toast.success(
+      <div className="flex justify-center">
+        <span className="text-green-500">Your message has been sent!</span>
+      </div>,
+      {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
     reset();
   };
 
@@ -30,9 +45,9 @@ export default function ContactForm() {
         <link rel="icon" type="image/jpg" href=""/>
       </Head>
     <Layout>
-    <div className="w-full mx-auto py-4">
-      <h1 className="text-3xl font-bold text-indigo-300 text-center">Contact Us</h1>
-      <h2 className="text-xl md:text-2xl font-bold text-indigo-300 text-center mt-4">If you have any problem or question - write to us - we will help!</h2>
+    <div className="w-full mx-auto py-6">
+      <h1 className="text-3xl font-bold text-indigo-400 text-center">Contact Us</h1>
+      <h2 className="text-xl md:text-2xl font-medium text-indigo-400 text-center mt-4">If you have any problem or question - write to us - we will help!</h2>
     </div>
     <form onSubmit={handleSubmit(onSubmit)} className="w-80 mx-auto mt-3 md:mt-10 border-2 p-3 rounded-xl">
       <div className="mb-4">
@@ -109,4 +124,4 @@ export default function ContactForm() {
     </Layout>
     </>
   );
-}
+};

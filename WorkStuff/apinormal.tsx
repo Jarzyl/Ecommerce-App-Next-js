@@ -1,8 +1,6 @@
-import HomePage from "@/components/Images";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import Product from "@/WorkStuff/Product";
+import Product from "@/WorkStuff/Old";
 
 interface Product {
   id: string;
@@ -72,32 +70,9 @@ export default function Home() {
               </div>
               </div>
               )}
-  
           </div>
         ))}
-        
-</div>
-
-
-        {/* <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {productInfo.map((product) => (
-            <div key={product.id} className="bg-white overflow-hidden shadow-md sm:rounded-lg">
-              <div className="relative h-48 w-full">
-                <Image
-                  src={product.picture}
-                  alt={`Picture of ${product.name}`}
-                  layout="fill"
-                  objectFit="contain"
-                />
-              </div>
-              <div className="px-4 py-5 sm:p-6">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">{product.name}</h3>
-                <p className="mt-2 max-w-2xl text-sm text-gray-500">{product.description}</p>
-                <p className="mt-2 max-w-2xl text-lg font-bold text-gray-900">${product.price}</p>
-              </div>
-            </div>
-          ))}
-        </div> */}
+      </div>
       </div>
       </div>
     </>

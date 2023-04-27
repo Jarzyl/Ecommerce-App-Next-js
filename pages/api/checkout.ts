@@ -25,20 +25,20 @@ export default async function handler(req: any, res: any) {
     const products = await Product.find({_id:{$in:uniqIds}}).exec();
 
     const line_items = [];
-for (const productId of uniqIds) {
-  const quantity = productsIds.filter((id: string) => id === productId).length;
-  const product = products.find((p: Product) => p._id.toString() === productId);
-  if (quantity > 0 && product) {
-    line_items.push({
-      quantity,
-      price_data: {
-        currency: 'USD',
-        product_data: { name: product.name },
-        unit_amount: quantity * product.price * 100,
-      },
-    });
-  }
-}
+    for (const productId of uniqIds) {
+      const quantity = productsIds.filter((id: string) => id === productId).length;
+      const product = products.find((p: Product) => p._id.toString() === productId);
+      if (quantity > 0 && product) {
+        line_items.push({
+          quantity,
+          price_data: {
+            currency: 'USD',
+            product_data: { name: product.name },
+            unit_amount: quantity * product.price * 100,
+          },
+        });
+      }
+    }
 
   const orderDoc = await Order.create({
     line_items,

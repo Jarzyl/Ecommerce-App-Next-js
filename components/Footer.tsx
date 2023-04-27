@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { useState, useRef } from 'react'
+import { useState, useRef } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Footer () {
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -8,24 +10,50 @@ function Footer () {
   function handleSubscribe() {
     const emailInputValue = emailInputRef.current?.value;
     if (!emailInputValue) {
-      alert('Please enter a valid e-mail address!');
+      toast.error(
+        <div className="flex justify-center">
+          <span className="text-red-500">Please enter a valid e-mail address!</span>
+        </div>,
+      {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return;
     }
-    alert(`Check your e-mail: ${emailInputValue} and redeem the code!`);
+    toast.success(
+      <div className="flex justify-center">
+          <span className="text-green-500">Check your e-mail: 
+          {emailInputValue} and redeem the code!</span>
+        </div>,
+      {
+      position: 'top-center',
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     setIsSubscribed(true);
     if (emailInputRef.current) {
       emailInputRef.current.value = '';
     }
   }
+  
 
     return (
       <footer className="bg-gray-100 dark:bg-slate-200 text-indigo-400 dark:text-teal-500 text-center mt-20 lg:mt-60">
         <div className="px-4 py-6 mx-auto">
         <div className="flex justify-center">
   <div className="text-xl xl:text-3xl flex flex-col items-center">
-    <div className="self-start">
+    <p className="self-start">
       Get a 10% discount on your first purchase by subscribing to the newsletter!
-    </div>
+    </p>
         <div className="grid gap-2 md:flex items-center mt-5 md:mt-10 text-xl">
           <input
             type="email"
@@ -43,7 +71,6 @@ function Footer () {
         </div>
       </div>
     </div>
-        
       </div>
       <div className="bg-gray-100 text-lg">
       <div className="flex justify-center mt-0 md:mt-3 pb-3 text-left">
