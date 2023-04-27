@@ -56,28 +56,28 @@ export function CartContextProvider({children}: {children: React.ReactNode}) {
   }
 
     function removeProduct(_id: string) {
-  setSelectedProducts(prev => {
-    const positionId = prev.indexOf(_id);
-    if (positionId !== -1) {
-      toast.error(
-        <div className="flex justify-center">
-          <span className="text-red-500">Product removed from cart</span>
-        </div>,
-        {
-          position: 'top-center',
-          autoClose: 1500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
+      setSelectedProducts(prev => {
+        const positionId = prev.indexOf(_id);
+        if (positionId !== -1) {
+          toast.error(
+            <div className="flex justify-center">
+              <span className="text-red-500">Product removed from cart</span>
+            </div>,
+            {
+              position: 'top-center',
+              autoClose: 1500,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            }
+          );
+          return prev.filter((value, index) => index !== positionId);
         }
-      );
-      return prev.filter((value, index) => index !== positionId);
-    }
-    return prev;
-  });
-};
+        return prev;
+      });
+    };
 
     function clearCart() {
       setSelectedProducts([]);

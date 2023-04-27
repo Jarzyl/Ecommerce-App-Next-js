@@ -34,7 +34,7 @@ export default async function handler(req: any, res: any) {
           price_data: {
             currency: 'USD',
             product_data: { name: product.name },
-            unit_amount: quantity * product.price * 100,
+            unit_amount: product.price * 100,
           },
         });
       }
@@ -58,5 +58,4 @@ export default async function handler(req: any, res: any) {
   res.json({
     url:session.url,
   });
-
-}
+};
