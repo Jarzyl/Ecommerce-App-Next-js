@@ -44,7 +44,7 @@ export default function Home({ products }: HomeProps) {
       <div className="w-full mx-auto">
   <div className="bg-white">
     <div className="w-full mx-auto py-6">
-      <h1 className="text-2xl md:text-3xl font-bold text-indigo-400 text-center">Welcome to XYZ store!</h1>
+      <h1 className="text-2xl md:text-3xl font-bold text-indigo-400 text-center">Welcome to our store!</h1>
     </div>
     <div className="w-3/5 mx-auto mb-3 md:py-6">
       <h2 className="md:text-2xl font-medium text-indigo-400 text-center">Our company offers products from the following categories</h2>

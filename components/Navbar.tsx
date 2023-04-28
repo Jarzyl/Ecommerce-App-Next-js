@@ -5,6 +5,8 @@ import axios from "axios";
 import { CartContext } from "./CartContext";
 import { BsCart } from 'react-icons/bs';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import Image from "next/image";
+import logo from '../public/logo1.png'
 
 interface Product {
   _id: string;
@@ -58,7 +60,10 @@ export default function Navbar() {
 
     return (
         <nav className="sticky top-0 bg-white p-5 w-full flex border-t border-gray-200 justify-end md:justify-center items-center text-gray-400 shadow-md h-16 z-50">
-  <ul className='hidden text-xl xl:text-2xl md:flex xl:flex flex-1 justify-center ml-16 font-medium'>
+          <ul className="hidden md:flex items-center">
+      <Image src={logo} alt="logo" width={50} height={50}/>
+  </ul>
+  <ul className='hidden text-xl xl:text-2xl md:flex xl:flex flex-1 justify-center font-medium'>
     <Link href={"/"}>
       <div
         className={
@@ -90,6 +95,9 @@ export default function Navbar() {
   </ul>
       
       {/* Hamburger and Cart Icon */}
+      <div className="md:hidden flex-1">
+      <Image src={logo} alt="logo" width={50} height={50} className=""/>
+      </div>
       <div onClick={handleCart} className="md:hidden relative flex justify-center items-center cursor-pointer">
       <BsCart size={25} className="mr-2"/>
       <span className="absolute top-0 right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-gray-300 transform translate-x-1/2 -translate-y-1/2 bg-indigo-400 rounded-full">{selectedProducts.length}</span>

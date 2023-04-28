@@ -3,10 +3,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import monitor from '../public/pictures/monitor.webp';
 import laptop from '../public/pictures/laptop.png';
-import chair from '../public/pictures/chair2.png';
+import chair from '../public/pictures/chair.png';
 import keybord from '../public/pictures/keybord.jpg';
-import lamp from '../public/pictures/lamp1.webp';
-import desk from '../public/pictures/desk1.1.jpg';
+import lamp from '../public/pictures/lamp.webp';
+import desk from '../public/pictures/desk.jpg';
 
 export default function Images() {
   return (
