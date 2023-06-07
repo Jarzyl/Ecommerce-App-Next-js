@@ -42,17 +42,17 @@ export default function Category({ products }: CategoryProps) {
         <link rel="icon" type="image/png" href="/shop.png"/>
       </Head>
       <Layout>
-        <div className="w-full mx-auto">
+        <div className="w-full mx-auto mt-10">
           <div className="bg-white">
             <div className="w-full mx-auto py-6">
-              <h1 className="text-3xl font-bold text-indigo-400 text-center">Search by category</h1>
+              <h1 className="text-3xl xl:text-5xl font-bold text-black text-center">Top Product Collection<br/> for Your Office</h1>
             </div>
             <div className="items-center justify-center mx-auto flex">
             <div className="grid grid-cols-4 md:flex">
             {categoriesNames.map(categoryName => (
                 <button
                     key={categoryName}
-                    className={`text-lg mr-4 text-gray-400 hover:text-indigo-400 capitalize p-0.5 ${category === categoryName ? 'font-bold text-indigo-300' : ''}`}
+                    className={`text-lg mr-4 border-4 border-gray-100 h-10 w-20 rounded-xl bg-gray-100 text-gray-400 hover:text-black capitalize p-0.5 ${category === categoryName ? 'font-bold bg-blue-300 border-blue-300' : ''}`}
                     onClick={() => setCategory(categoryName)}>{categoryName}
                 </button>
               ))}

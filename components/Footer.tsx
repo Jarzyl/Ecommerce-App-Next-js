@@ -1,93 +1,65 @@
 import Link from "next/link";
-import { useState, useRef } from 'react';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { BsInstagram, BsFacebook, BsTwitter } from "react-icons/bs";
+import { AiOutlineMail } from 'react-icons/ai';
 
 function Footer () {
-  const [isSubscribed, setIsSubscribed] = useState(false);
-  const emailInputRef = useRef<HTMLInputElement>(null);
-
-  function handleSubscribe() {
-    const emailInputValue = emailInputRef.current?.value;
-    if (!emailInputValue) {
-      toast.error(
-        <div className="flex justify-center">
-          <span className="text-red-500">Please enter a valid e-mail address!</span>
-        </div>,
-      {
-        position: 'top-center',
-        autoClose: 2000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      return;
-    }
-    toast.success(
-      <div className="flex justify-center">
-          <span className="text-green-500">Check your e-mail: 
-          {emailInputValue} and redeem the code!</span>
-        </div>,
-      {
-      position: 'top-center',
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-    setIsSubscribed(true);
-    if (emailInputRef.current) {
-      emailInputRef.current.value = '';
-    }
-  }
-  
-
     return (
-      <footer className="bg-gray-100 dark:bg-slate-200 text-indigo-400 dark:text-teal-500 text-center mt-20 lg:mt-60">
-        <div className="px-4 py-6 mx-auto">
-        <div className="flex justify-center">
-  <div className="text-xl xl:text-3xl flex flex-col items-center">
-    <p className="self-start">
-      Get a 10% discount on your first purchase by subscribing to the newsletter!
-    </p>
-        <div className="grid gap-2 md:flex items-center mt-5 md:mt-10 text-xl">
-          <input
-            type="email"
-            placeholder="your.email@xyz.com"
-            ref={emailInputRef}
-            className="w-60 mx-2 text-lg focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300 rounded-lg px-2 mb-2 md:mb-0"
-          />
-          <div>
-          <button
-            type="submit"
-            onClick={handleSubscribe}
-            className="text-lg w-28 h-7 font-bold text-white bg-indigo-400 rounded-lg hover:bg-indigo-500 focus:outline-none mx-2">Subscribe!
-          </button>
-          </div>
-        </div>
-      </div>
+      <footer className="bg-white text-center lg:text-left mt-10">
+    <div className="flex items-center justify-center border-b-2 p-3  lg:justify-end">
+    <div className="mr-12 hidden lg:block">
+      <p className="text-slate-400 text-xl md:text-xl xl:text-2xl">Stay in contact with us:</p>
     </div>
+    <div className="flex justify-center text-blue-500">
+      <a href="https://twitter.com/?lang=en" target="_blank" className="mx-2 hover:scale-125 duration-300"><BsTwitter size={20}/></a>
+      <a href="https://www.facebook.com/" target="_blank" className="mx-2 hover:scale-125 duration-300"><BsFacebook size={20}/></a>
+      <a href="https://www.instagram.com/" target="_blank" className="mx-2 hover:scale-125 duration-300"><BsInstagram size={20}/></a>
+      <a href="mailto:shop@gmail.com" target="_blank" className="mx-2 hover:scale-125 duration-300"><AiOutlineMail size={20}/></a>
+    </div>
+  </div>
+  <div className="mx-6 py-4 text-left">
+    <div className="grid gap-5 md:gap-8 md:grid-cols-3 lg:grid-cols-3">
+      <div>
+        <h6 className="mb-4 text-xl md:text-2xl lg:text-3xl xl:text-4xl flex items-center justify-center font-semibold md:justify-start text-blue-600"> Shop
+        </h6>
+        <p className="md:w-80 text-slate-400 xl:text-xl">
+        Transform your workspace with our premium office supplies. Shop now for top-quality office furniture, stationery, and accessories to create an efficient and stylish office environment.
+        </p>
       </div>
-      <div className="bg-gray-100 text-lg">
-      <div className="flex justify-center mt-0 md:mt-3 pb-3 text-left">
-          <ul className="grid grid-cols-2 md:flex">
-            <li className="md:mr-6 cursor-pointer">About</li>
-            <li className="md:mr-6 cursor-pointer">Our store</li>
-            <li className="md:mr-6 cursor-pointer">FAQ</li>
-            <li className="md:mr-6 cursor-pointer">News</li>
-            <li className="md:mr-6 cursor-pointer">Careers</li>
-            <Link href='/Contact'>Contact</Link>
-          </ul>
+      <div className="text-slate-400 text-center md:text-left">
+        <h6 className="mb-3 text-lg md:text-xl lg:text-2xl xl:text-3xl flex justify-center font-semibold md:justify-start text-blue-600">Useful links
+        </h6>
+        <div className="xl:text-xl">
+        <p className="mb-2">
+          <Link href="#!">About</Link>
+        </p>
+        <p className="mb-2">
+          <Link href="#!">Our store</Link>
+        </p>
+        <p className="mb-2">
+          <Link href="#!">FAQ</Link>
+        </p>
+        <p className="mb-2">
+          <a href="#!">Privacy Policy</a>
+        </p>
+        <p>
+          <a href="#!">Terms and Conditions</a>
+        </p>
         </div>
-        <hr className="w-1/2 mx-auto h-0.5 bg-indigo-300"></hr>
-      <div className=" dark:bg-slate-200 text-indigo-400 dark:text-teal-500 pt-2 pb-2 text-center text-base"> Copyright © 2023 | Bartosz Jarzyło | All Rights Reserved
       </div>
+        <div className="text-slate-400">
+          <h6 className="mb-4 text-lg md:text-xl lg:text-2xl xl:text-3xl flex justify-center font-semibold md:justify-start text-blue-600">Contact</h6>
+          <p className="mb-4 xl:text-xl flex items-center justify-center md:justify-start">
+          1234 1st Ave<br/>Seattle, WA 98101
+          </p>
+          <p className="xl:text-xl flex items-center justify-center md:justify-start"> 999-888-444
+          </p>
+        </div>
+        </div>
       </div>
-    </footer>    
+    <hr className="w-1/2 mx-auto h-0.5 bg-white"></hr>
+        <div className="bg-white pt-2 pb-2 text-center xl:text-lg text-blue-600"> Copyright © 2023 | Bartosz Jarzyło | All Rights Reserved
+      </div>
+  </footer>
   );
 };
 
