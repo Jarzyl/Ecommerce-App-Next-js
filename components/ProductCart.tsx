@@ -58,26 +58,23 @@ export default function ProductCart({ _id, name, price, description, picture }: 
     };
 
   return (
-    <div className="w-44 md:w-52 xl:w-60 rounded-xl border-4 md:border-8 border-white shadow-md shadow-slate-300 md:hover:scale-110 duration-200">
+    <div className="w-40 md:w-52 xl:w-60 rounded-xl shadow-md shadow-slate-300 md:hover:scale-110 duration-200">
       <div className="p-2 h-48 bg-gray-100 rounded-t-xl">
         <div className="flex justify-end"> 
-        {isLiked ? (
-        <AiFillHeart size={25} className="absolute cursor-pointer text-red-500"
+        {isLiked ? ( <AiFillHeart size={25} className="absolute cursor-pointer text-red-500"
           onClick={handleLike}/>
-      ) : (
-        <AiOutlineHeart size={25} className="absolute cursor-pointer"
+      ) : ( <AiOutlineHeart size={25} className="absolute cursor-pointer"
           onClick={handleLike}/>
-      )}
+          )}
         </div>
-      <Image src={picture} alt="product photo" 
-        className="object-contain max-h-full max-w-full" 
+      <Image src={picture} alt="product photo" className="object-contain max-h-full max-w-full" 
         width={200} height={200}/>
         </div>
         <h3 className="text-lg text-left ml-3 text-black font-bold mt-1">{name}</h3>
         <p className="text-sm mt-1 ml-3 text-gray-500">{description}</p>
         <div className="flex mt-2">
-          <div className="text-lg font-medium grow ml-3 mb-3 text-blue-500">{price}$</div>
-              <BsCart onClick={addToCart} className="text-blue-500 mr-2 cursor-pointer" size={25}/>
+          <div className="text-lg font-medium grow ml-3 mb-3 text-sky-500">{price}$</div>
+              <BsCart onClick={addToCart} className="text-sky-500 mr-2 cursor-pointer" size={25}/>
       </div>
     </div>
   );

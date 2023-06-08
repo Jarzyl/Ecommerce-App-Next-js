@@ -5,7 +5,8 @@ interface CartContextInterface {
   selectedProducts: any[];
   setSelectedProducts: React.Dispatch<React.SetStateAction<any[]>>;
   addProduct: (_id: string) => void;
-  removeProduct: (_id: string) => void;
+  deleteProduct: (_id: string) => void;
+  removeProduct: (_id: string, quantity: number) => void;
   clearCart: () => void;
 }
 
@@ -13,6 +14,7 @@ export const CartContext = createContext<CartContextInterface>({
   selectedProducts: [],
   setSelectedProducts: () => {},
   addProduct: () => {},
+  deleteProduct: () => {},
   removeProduct: () => {},
   clearCart: () => {},
 });
@@ -52,10 +54,10 @@ export function CartContextProvider({children}: {children: React.ReactNode}) {
       );
     } else {
       console.log('Invalid product id');
-    }
-  }
+    };
+  };
 
-    function removeProduct(_id: string) {
+    function deleteProduct(_id: string) {
       setSelectedProducts(prev => {
         const positionId = prev.indexOf(_id);
         if (positionId !== -1) {
@@ -79,12 +81,38 @@ export function CartContextProvider({children}: {children: React.ReactNode}) {
       });
     };
 
+    function removeProduct(_id: string, quantity: number) {
+      setSelectedProducts(prev => {
+        const positionId = prev.indexOf(_id);
+        if (positionId !== -1) {
+          const updatedProducts = [...prev];
+          updatedProducts.splice(positionId, quantity);
+          toast.error(
+            <div className="flex justify-center">
+              <span className="text-red-500">Product removed from cart</span>
+            </div>,
+            {
+              position: 'top-center',
+              autoClose: 1500,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            }
+          );
+          return updatedProducts;
+        }
+        return prev;
+      });
+    };
+
     function clearCart() {
       setSelectedProducts([]);
     }
 
     return (
-        <CartContext.Provider value={{selectedProducts, setSelectedProducts, addProduct, removeProduct, clearCart }}>
+        <CartContext.Provider value={{selectedProducts, setSelectedProducts, addProduct, deleteProduct, removeProduct, clearCart }}>
           {children}
         </CartContext.Provider>
       );

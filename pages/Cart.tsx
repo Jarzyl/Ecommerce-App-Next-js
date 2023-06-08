@@ -5,6 +5,8 @@ import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { CartContext } from "@/components/CartContext";
 import Layout from "@/components/Layout";
+import { BsTrash3 } from 'react-icons/bs';
+import Link from "next/link";
 
 interface Product {
     _id: string;
@@ -16,7 +18,7 @@ interface Product {
 }
 
 export default function CartPage() {
-    const {selectedProducts, addProduct, removeProduct, clearCart} = useContext(CartContext);
+    const {selectedProducts, addProduct, deleteProduct, removeProduct, clearCart} = useContext(CartContext);
     const [products, setProducts] = useState<Product[]>([]);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -43,8 +45,12 @@ export default function CartPage() {
     }
 
     function addLess(id: string) {
-        removeProduct(id);
+        deleteProduct(id);
     }
+
+    function removeProd(product: Product) {
+        removeProduct(product._id, selectedProducts.filter(id => id === product._id).length);
+      }
 
     async function goToPayment() {
         const response = await axios.post('/api/checkout', {
@@ -92,123 +98,69 @@ export default function CartPage() {
             <link rel="icon" type="image/png" href="/shop.png"/>
             </Head>
             <Layout>
-        <div className="w-full bg-white h-full justify-center items-center mt-6">
-        <div className="flex justify-center ml-0 md:justify-start md:ml-32">
-            <p className="text-2xl md:text-3xl xl:text-4xl text-indigo-400 font-bold mt-8 mb-8">Your Cart</p>
-        </div>
-            <div className="grid md:grid-cols-2">
-            <div className="flex justify-center items-center">
+        <div className="max-w-[400px] md:max-w-[1100px] mx-auto bg-white justify-center items-center mt-6">
+            <div className="grid md:flex">
+            
             {!selectedProducts?.length && (
             <h1 className="text-xl font-medium mt-10 text-center text-red-500">Your cart is empty!</h1>)}
     {products && products.length > 0 && (
     <>
-    <table className="w-80 mx-auto">
-    <thead>
-        <tr className="text-indigo-400">
-            <th className="flex">Product</th>
-            <th className="w-1/3">Quantity</th>
-            <th>Price</th>
-        </tr>
-    </thead>
-    <tbody>
-        {products.map((product: Product) => (
-        <tr key={product._id}>
-            <td className="text-gray-500 font-bold">{product.name}
-                <Image src={product.picture} alt="product photo" className="object-contain max-h-full max-w-full mb-3" width={150} height={100} />
-            </td>
-            <td>
-                <button 
-                onClick={() => addLess(product._id)}
-                className="bg-indigo-400 text-white w-6 h-6 rounded-lg mr-2">-</button>
-            {selectedProducts.filter(id => id === product._id).length}
-                <button 
-                onClick={() => addMore(product._id)}
-                className="bg-indigo-400 text-white w-6 h-6 rounded-lg ml-2">+</button>
-            </td>
-            <td className="font-medium text-gray-400">
-            {selectedProducts.filter(id => id === product._id).length * product.price}$
-            </td>
-            </tr>  
-            ))}
-            <tr className="font-bold">
-                <td></td>
-                <td className="text-gray-400">Total</td>
-                <td className="text-indigo-400">{total}$</td>
-                </tr>
-            <tr className="flex justify-center items-center text-center mt-16">
-                <td className="bg-indigo-400 rounded-lg border-2 w-36 cursor-pointer">
-                <button onClick={clearCart} className="text-white font-medium"
-                >Clear cart</button>
-                </td>
-                </tr>
-            </tbody>
-            </table>
-            </>
-        )}
+        <div className="w-[330px] md:w-[700px] mx-auto">
+        <div className="flex justify-between">
+            <p className="text-3xl md:text-4xl xl:text-5xl text-black font-bold mt-8 mb-6">Cart</p>
+            <div className="flex justify-center items-center text-center text-black mt-2">
+              <BsTrash3 size={15} />
+              <button onClick={clearCart} className="text-md md:text-lg font-bold ml-2"
+              >Clear cart</button>
+            </div>
         </div>
-        {!!selectedProducts.length && (
-        <div className="flex justify-center items-center mx-auto w-full mt-16 md:mt-0">
-            <div className="flex flex-col text-indigo-400">
-            <p className="text-2xl md:text-3xl xl:text-4xl text-center font-bold">Order information</p>
-            <div className="flex flex-col mt-5 w-80 mx-auto">
-            <input 
-            type="text" 
-            placeholder="Name"
-            value={name}
-            name="name"
-            onChange={ev => setName(ev.target.value)} 
-            className="border-2 py-2 my-1 p-2 rounded-xl focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
-            required/>
-            <input 
-            type="email" 
-            placeholder="Email"
-            value={email}
-            name="email"
-            onChange={ev => setEmail(ev.target.value)}
-            className="border-2 py-2 my-1 p-2 rounded-xl focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
-            required/>
-            <div className="flex">
-            <input 
-            type="text" 
-            placeholder="City"
-            value={city}
-            name="city"
-            onChange={ev => setCity(ev.target.value)}
-            className="border-2 py-2 my-1 p-2 rounded-xl mr-4 w-40 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
-            required/>
-            <input 
-            type="text" 
-            placeholder="Postal Code"
-            value={postalCode}
-            name="postalcode"
-            onChange={ev => setPostalCode(ev.target.value)}
-            className="border-2 py-2 my-1 p-2 rounded-xl w-36 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
-            required/>
+          <div className="flex justify-between uppercase mb-3 text-gray-300 text-base md:text-xl">
+          <p>Product</p>
+          <p className="ml-4 md:ml-12">Quantity</p>
+          <p>Price</p>
+          </div>
+          <div className="border"></div>
+      {products.map((product: Product) => (
+        <div key={product._id} className="flex items-center justify-between mb-3">
+            <div className="grid xl:flex items-center">
+          <div className="relative h-[100px] w-[120px] lg:h-[180px] lg:w-[180px]">
+            <Image src={product.picture} alt="product photo" fill className="object-cover" /></div>
+            <p className="text-gray-500 font-bold w-28">{product.name}</p>
+          </div>
+          <div className="grid mr-6 md:mr-12 xl:mr-44">
+          <div className="bg-white text-black w-20 border-2 border-gray-100 rounded-lg flex justify-center">
+            <button onClick={() => addLess(product._id)} className="text-slate-700 w-3 mr-2">-</button>
+            {selectedProducts.filter(id => id === product._id).length}
+            <button onClick={() => addMore(product._id)} className="text-slate-700 w-3 ml-2">+</button>
+          </div>
+          <div className="flex items-center mt-3 ml-1 text-black">
+            <BsTrash3 size={15} />
+            <button onClick={() => removeProd(product)} className="text-sm font-bold ml-2">Remove</button>
+          </div>
+          </div>
+          <p className="font-bold text-black">
+            {selectedProducts.filter(id => id === product._id).length * product.price}$
+          </p>
+        </div>))}
+          </div>
+            </>)}
+        <div className="bg-white w-72 h-48 xl:h-56 xl:w-80 border-2 border-gray-100 rounded-lg mx-auto mt-10 text-lg md:text-xl xl:text-2xl">
+            <div className="p-3 text-gray-400">
+            <div className="flex justify-between mb-2">
+            <p>Subtotal</p> <p className="font-bold text-black">{total}$</p>
             </div>
-            <input 
-            type="text" 
-            placeholder="Street Address"
-            value={streetAddress}
-            name="address"
-            onChange={ev => setStreetAddress(ev.target.value)}
-            className="border-2 py-2 my-1 p-2 rounded-xl focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
-            required/>
-            <input 
-            type="text" 
-            placeholder="Country"
-            value={country}
-            name="country"
-            onChange={ev => setCountry(ev.target.value)}
-            className="border-2 py-2 my-1 p-2 rounded-xl focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
-            required/>
+            <div className="flex justify-between mb-2">
+            <p>Discount</p> <p className="text-gray-300">0$</p>
             </div>
-            <div className="mt-6 bg-indigo-400 border-2 rounded-md flex justify-center items-center w-52 mx-auto text-white font-medium">
-            <button
-            onClick={goToPayment}>Continue to payment</button>
+            <div className="border w-64 mx-auto mb-2"></div>
+            <div className="flex justify-between text-black">
+            <p>Grand Total</p> <p className="font-bold">{total}$</p>
             </div>
             </div>
-            </div>
-            )}
+        <div className="flex justify-center bg-black text-white w-52 mt-2 mx-auto rounded-lg cursor-pointer hover:bg-sky-500 duration-200">
+            <Link href='/Checkout'>Checkout now</Link>
+        </div>
+        </div>
         </div>
         </div>
         </Layout>

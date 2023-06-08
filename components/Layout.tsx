@@ -11,7 +11,7 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <>
-    <div className="mb-6">
+    <div id="top">
       <Navbar />
       {children}
     </div>

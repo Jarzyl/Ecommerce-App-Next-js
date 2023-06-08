@@ -19,7 +19,7 @@ interface CategoryProps {
 }
 
 export default function Category({ products }: CategoryProps) {
-  const [phrase, setPhrase] = useState<string>('');
+  const [phrase, ] = useState<string>('');
   const [category, setCategory] = useState<string>('all');
 
   const categoriesNames = ['all', 'desks', 'chairs', 'lamps', 'laptops', 'monitors', 'keybords', 'mouses'];
@@ -50,12 +50,10 @@ export default function Category({ products }: CategoryProps) {
             <div className="items-center justify-center mx-auto flex">
             <div className="grid grid-cols-4 md:flex">
             {categoriesNames.map(categoryName => (
-                <button
-                    key={categoryName}
-                    className={`text-lg mr-4 border-4 border-gray-100 h-10 w-20 rounded-xl bg-gray-100 text-gray-400 hover:text-black capitalize p-0.5 ${category === categoryName ? 'font-bold bg-blue-300 border-blue-300' : ''}`}
+                <button key={categoryName}
+                    className={`text-lg mr-2 mb-3 md:mr-4 border-4 border-gray-100 h-10 w-20 rounded-xl bg-gray-100 text-black capitalize p-0.5 ${category === categoryName ? 'font-bold bg-sky-500 border-sky-500' : ''}`}
                     onClick={() => setCategory(categoryName)}>{categoryName}
-                </button>
-              ))}
+                </button>))}
           </div>
             </div>
             <div className="items-center justify-center mx-auto grid mt-4 md:mt-8">
@@ -67,17 +65,16 @@ export default function Category({ products }: CategoryProps) {
         <div key={categoryName}>
           {filteredProducts.find(p => p.category === categoryName) && (
             <div>
-              <div className="grid grid-cols-2 gap-1 md:gap-3 lg:gap-5 py-2 lg:flex">
+              <div className="grid grid-cols-2 gap-3 lg:gap-5 py-2 lg:flex">
                 {filteredProducts.filter(p => p.category === categoryName).map(product => (
                   <div className="mx-auto" key={product.name}>
-                    <ProductCart
-                      key={product._id}
+                    <ProductCart key={product._id}
                       _id={product._id}
                       name={product.name}
                       description={product.description}
                       price={product.price}
                       category={product.category}
-                      picture={product.picture} />
+                      picture={product.picture}/>
                   </div>
                 ))}
               </div>
@@ -86,10 +83,10 @@ export default function Category({ products }: CategoryProps) {
         </div>
       ))}
       </div>
+      </div>
     </div>
-  </div>
-      </Layout>
-    </>
+  </Layout>
+  </>
   );
 };
 
