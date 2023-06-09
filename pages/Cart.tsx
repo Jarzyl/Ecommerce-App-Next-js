@@ -110,7 +110,7 @@ export default function CartPage() {
             <p className="text-3xl md:text-4xl xl:text-5xl text-black font-bold mt-8 mb-6">Cart</p>
             <div className="flex justify-center items-center text-center text-black mt-2">
               <BsTrash3 size={15} />
-              <button onClick={clearCart} className="text-md md:text-lg font-bold ml-2"
+              <button onClick={clearCart} className="text-md md:text-lg font-bold ml-1"
               >Clear cart</button>
             </div>
         </div>
@@ -133,9 +133,9 @@ export default function CartPage() {
             {selectedProducts.filter(id => id === product._id).length}
             <button onClick={() => addMore(product._id)} className="text-slate-700 w-3 ml-2">+</button>
           </div>
-          <div className="flex items-center mt-3 ml-1 text-black">
+          <div className="flex items-center mt-3 ml-2 text-black">
             <BsTrash3 size={15} />
-            <button onClick={() => removeProd(product)} className="text-sm font-bold ml-2">Remove</button>
+            <button onClick={() => removeProd(product)} className="text-sm font-bold ml-1">Remove</button>
           </div>
           </div>
           <p className="font-bold text-black">
@@ -144,15 +144,15 @@ export default function CartPage() {
         </div>))}
           </div>
             </>)}
-        <div className="bg-white w-72 h-48 xl:h-56 xl:w-80 border-2 border-gray-100 rounded-lg mx-auto mt-10 text-lg md:text-xl xl:text-2xl">
-            <div className="p-3 text-gray-400">
+        <div className="bg-white w-72 h-48 xl:h-52 xl:w-80 border-2 border-gray-100 rounded-lg mx-auto mt-10 text-lg md:text-xl xl:text-2xl">
+            <div className="p-4 text-gray-400">
             <div className="flex justify-between mb-2">
             <p>Subtotal</p> <p className="font-bold text-black">{total}$</p>
             </div>
             <div className="flex justify-between mb-2">
             <p>Discount</p> <p className="text-gray-300">0$</p>
             </div>
-            <div className="border w-64 mx-auto mb-2"></div>
+            <div className="border w-64 xl:w-72 mx-auto mb-2"></div>
             <div className="flex justify-between text-black">
             <p>Grand Total</p> <p className="font-bold">{total}$</p>
             </div>

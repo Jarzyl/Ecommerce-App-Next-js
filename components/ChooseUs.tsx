@@ -41,7 +41,7 @@ export default function ChooseUs() {
             </div>
             <div className='w-72'>
                 <p className='ml-24 text-gray-400 text-sm'>
-                We believe that quality furniture and office accessorises should be accesible to everyone. That's why we offer a wide range of products at affordable prices.</p></div>
+                We believe that quality furniture and office accessorises should be accesible to everyone. That`s why we offer a wide range of products at affordable prices.</p></div>
         </div>
         <div className='grid mt-6 mb-6'>
             <div className='flex justify-center'>

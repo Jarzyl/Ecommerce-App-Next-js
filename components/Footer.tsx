@@ -20,7 +20,7 @@ function Footer () {
   <div className="mx-6 pt-3 text-left">
     <div className="grid md:grid-cols-5 gap-5 md:gap-32">
       <div>
-        <h6 className="mb-4 text-xl xl:text-2xl flex items-center justify-center font-semibold md:justify-start text-black">Shop</h6>
+        <h6 className="mb-4 text-xl xl:text-2xl flex items-center justify-center font-semibold md:justify-start text-black">E-Shop</h6>
         <p className="md:w-56 text-slate-400 text-sm xl:text-md ml-0 md:ml-1 text-center md:text-left">
         Transform your workspace with our premium office supplies. Shop now for top-quality office furniture, stationery, and accessories to create an efficient and stylish office environment.
         </p>

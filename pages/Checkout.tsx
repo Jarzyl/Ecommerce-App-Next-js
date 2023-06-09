@@ -5,7 +5,7 @@ import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { CartContext } from "@/components/CartContext";
 import Layout from "@/components/Layout";
-import { BsTrash3 } from 'react-icons/bs';
+import ShippingOption from "@/components/ShippingOption";
 
 interface Product {
     _id: string;
@@ -17,7 +17,7 @@ interface Product {
 }
 
 export default function CartPage() {
-    const {selectedProducts, addProduct, deleteProduct, removeProduct} = useContext(CartContext);
+    const {selectedProducts} = useContext(CartContext);
     const [products, setProducts] = useState<Product[]>([]);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -38,18 +38,6 @@ export default function CartPage() {
             setProducts([]);
         }
     }, [selectedProducts]);
-
-    function addMore(id: string) {
-        addProduct(id);
-    }
-
-    function addLess(id: string) {
-        deleteProduct(id);
-    }
-
-    function removeProd(product: Product) {
-        removeProduct(product._id, selectedProducts.filter(id => id === product._id).length);
-    }
 
     async function goToPayment() {
         const response = await axios.post('/api/checkout', {
@@ -98,39 +86,61 @@ export default function CartPage() {
             </Head>
             <Layout>
         <div className="max-w-[400px] md:max-w-[1100px] mx-auto bg-white justify-center items-center mt-6">
-        <div className="flex justify-start ml-4 md:ml-10">
-            <p className="text-2xl md:text-3xl xl:text-4xl text-black font-bold mt-8 mb-6">Checkout</p>
-        </div>
+            <div className="flex justify-start ml-4">
+                <p className="text-3xl md:text-4xl xl:text-5xl text-black font-bold mt-8 mb-6">Checkout</p>
+            </div>
             <div className="grid md:flex">
             
         {selectedProducts.length > 0 && (
-        <div className="w-[300px] md:w-[700px] mt-10 md:mt-0 mx-auto">
+        <>
+        <div className="w-[300px] md:w-[700px] mx-auto border-2 border-gray-200 rounded-xl p-2">
             
-            <div className="flex flex-col mt-5 w-80 mx-auto">
+            <div className="flex flex-col mt-2 w-[280px] md:w-[660px] mx-auto">
+                <p className="text-lg font-bold mb-2 text-gray-700">Type shipping country</p>
             <input 
             type="text" 
-            placeholder="Name"
+            placeholder="Enter your country"
+            value={country}
+            name="country"
+            onChange={ev => setCountry(ev.target.value)}
+            className="border py-2 my-1 p-2 rounded-lg bg-slate-100 focus:outline-none focus:border-sky-500 focus:placeholder-sky-500 text-sky-500"
+            required/>
+            <div className="border my-4"></div>
+            <p className="text-lg font-bold mb-2 text-gray-700">Shipping address</p>
+            <p className="font-semibold text-black/60 mt-1">Full name *</p>
+            <input 
+            type="text" 
+            placeholder="Enter your full name"
             value={name}
             name="name"
             onChange={ev => setName(ev.target.value)} 
-            className="border-2 py-2 my-1 p-2 rounded-xl focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
+            className="border py-2 my-1 p-2 rounded-lg bg-slate-100 focus:outline-none focus:border-sky-500 focus:placeholder-sky-500 text-sky-500"
             required/>
+            <p className="font-semibold text-black/60 mt-1">Email address*</p>
             <input 
             type="email" 
-            placeholder="Email"
+            placeholder="Enter your email address"
             value={email}
             name="email"
             onChange={ev => setEmail(ev.target.value)}
-            className="border-2 py-2 my-1 p-2 rounded-xl focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
+            className="border py-2 my-1 p-2 rounded-lg bg-slate-100 focus:outline-none focus:border-sky-500 focus:placeholder-sky-500 text-sky-500"
             required/>
-            <div className="flex">
+             <p className="font-semibold text-black/60 mt-1">Phone number *</p>
+            <input 
+            type="number" 
+            placeholder="Enter your phone number (digits only)"
+            name="phone"
+            className="border py-2 my-1 p-2 rounded-lg bg-slate-100 focus:outline-none focus:border-sky-500 focus:placeholder-sky-500 text-sky-500"
+            required/>
+            <p className="font-semibold text-black/60 mt-1">City & Postal Code *</p>
+            <div className="grid md:flex">
             <input 
             type="text" 
             placeholder="City"
             value={city}
             name="city"
             onChange={ev => setCity(ev.target.value)}
-            className="border-2 py-2 my-1 p-2 rounded-xl mr-4 w-40 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
+            className="border py-2 my-1 p-2 mr-3 w-[280px] md:w-[340px] rounded-lg bg-slate-100 focus:outline-none focus:border-sky-500 focus:placeholder-sky-500 text-sky-500"
             required/>
             <input 
             type="text" 
@@ -138,86 +148,93 @@ export default function CartPage() {
             value={postalCode}
             name="postalcode"
             onChange={ev => setPostalCode(ev.target.value)}
-            className="border-2 py-2 my-1 p-2 rounded-xl w-36 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
+            className="border py-2 my-1 p-2 w-[280px] md:w-[340px] rounded-lg bg-slate-100 focus:outline-none focus:border-sky-500 focus:placeholder-sky-500 text-sky-500"
             required/>
             </div>
+            <p className="font-semibold text-black/60 mt-1">Street name and house number *</p>
             <input 
             type="text" 
             placeholder="Street Address"
             value={streetAddress}
             name="address"
             onChange={ev => setStreetAddress(ev.target.value)}
-            className="border-2 py-2 my-1 p-2 rounded-xl focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
-            required/>
-            <input 
-            type="text" 
-            placeholder="Country"
-            value={country}
-            name="country"
-            onChange={ev => setCountry(ev.target.value)}
-            className="border-2 py-2 my-1 p-2 rounded-xl focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300"
+            className="border py-2 my-1 p-2 mb-2 rounded-lg bg-slate-100 focus:outline-none focus:border-sky-500 focus:placeholder-sky-500 text-sky-500"
             required/>
             </div>
+            <div className="grid w-[280px] md:w-[660px] mx-auto mt-6">
+            <p className="text-lg font-bold mb-2 text-gray-700">Shipping method</p>
+            <ShippingOption title="Free shipping" duration="5-7 business days" price="0$" />
+            <ShippingOption title="Regular shipping" duration="3-4 business days" price="7.50$" />
+            <ShippingOption title="Express shipping" duration="1-2 business days" price="17.50$" />
             </div>
+            </div>
+                </>
             )}
 
+            {/* Empty */}
             <div className="grid justify-center items-center mt-10 md:mt-0">
-            {!selectedProducts?.length && (
-            <h1 className="text-xl font-medium mt-10 text-center text-red-500">Your cart is empty!</h1>)}
-    {products && products.length > 0 && (
-    <>
-        <div className="w-[300px] md:w-[400px] border-2 border-gray-200 p-4 rounded-xl">
-          <div className="flex justify-between font-bold">
-          Your Order
-          </div>
-      {products.map((product: Product) => (
-        <div key={product._id} className="flex items-center justify-between mb-3">
-          <div className="grid md:flex items-center">
-            <img src={product.picture} alt="product photo" className="object-contain max-h-full max-w-full mr-3" width={70} height={50} />
-            <p className="text-gray-500 text-base">{product.name}</p>
-          </div>
-          <p className="font-bold text-black">
-            {selectedProducts.filter(id => id === product._id).length * product.price}$
-          </p>
-        </div>))}
-        <div className="border"></div>
-        <div className="grid justify-start mx-auto mt-3">
-        <p className="text-black text-base font-bold mb-2">Discount Code</p>
-        <div className="flex justify-start">
-            <input type="text"
-            placeholder="Add discount code"
-            name="discount code"
-            className="border-2 bg-gray-100 py-2 p-2 h-12 rounded-lg w-44 mr-2 focus:outline-none focus:border-black focus:placeholder-sky-500"
-            />
-            <div className="flex justify-center bg-gray-100 border-2 text-gray-700 w-20 h-12 rounded-lg cursor-pointer hover:bg-sky-500 duration-200 font-bold hover:border-sky-500">
-                <button>Apply</button>
-            </div>
-        </div>
+            {!selectedProducts?.length && ( <h1 className="text-xl font-medium mt-10 text-center text-red-500">Your cart is empty!</h1>)}
+
+            {/* With products */}
+            {products && products.length > 0 && (
+            <>
+                <div className="w-[300px] md:w-[350px] border-2 border-gray-200 p-4 rounded-xl md:mb-80">
+                <div className="flex justify-between font-bold text-gray-700">
+                Your Order
+                </div>
+            {products.map((product: Product) => (
+                <div key={product._id} className="flex items-center justify-between mb-3">
+                <div className="grid md:flex items-center">
+                    <Image src={product.picture} alt="product photo" className="object-contain max-h-full max-w-full mr-3" width={70} height={50} />
+                    <p className="text-gray-500 text-base">{product.name}</p>
+                </div>
+                <p className="font-bold text-black">
+                    {selectedProducts.filter(id => id === product._id).length * product.price}$
+                </p>
+                </div>))}
+                <div className="border"></div>
+                <div className="grid justify-start mx-auto mt-3">
+                <p className="text-gray-700 text-base font-bold mb-2">Discount Code</p>
+                <div className="flex justify-start">
+                    <input type="text"
+                    placeholder="Add discount code"
+                    name="discount code"
+                    className="border-2 bg-gray-100 py-2 p-2 h-12 rounded-lg w-44 md:w-56 mr-1 focus:outline-none focus:border-black focus:placeholder-sky-500"
+                    />
+                    <div className="flex justify-center bg-gray-100 border-2 text-gray-700 w-20 ml-1 h-12 rounded-lg cursor-pointer hover:bg-sky-500 duration-200 font-bold hover:border-sky-500">
+                        <button>Apply</button>
+                    </div>
+                </div>
         <div className="flex justify-start text-center mt-2">
-        <p className="text-black font-bold text-sm mr-1">New customer?</p>
-        <p className="text-gray-700 text-sm">Sign up to get better offer</p>
+        <p className="text-gray-700 font-bold text-sm mr-1">New customer?</p>
+        <p className="text-gray-700 text-sm">
+        <span className="underline">Sign up</span> to get better offer </p>
         </div>
         </div>
-        <div className="bg-white w-72 h-48 xl:h-56 xl:w-80 border-2 border-gray-100 rounded-lg mx-auto mt-10 text-lg md:text-xl xl:text-2xl">
-            <div className="p-3 text-gray-400">
+        <div className="border mt-3 mb-2"></div>
+        <div className="text-lg md:text-xl xl:text-2xl">
+            <div className="text-gray-400">
             <div className="flex justify-between mb-2">
             <p>Subtotal</p> <p className="font-bold text-black">{total}$</p>
             </div>
             <div className="flex justify-between mb-2">
-            <p>Discount</p> <p className="text-gray-300">0$</p>
+            <p>Discount</p> <p className="text-gray-300">-0$</p>
             </div>
-            <div className="border w-64 mx-auto mb-2"></div>
-            <div className="flex justify-between text-black">
+            <div className="flex justify-between mb-2">
+            <p>Shipment cost</p> <p className="text-gray-300">0$</p>
+            </div>
+            <div className="border mb-2"></div>
+            <div className="flex justify-between text-gray-700">
             <p>Grand Total</p> <p className="font-bold">{total}$</p>
             </div>
             </div>
         </div>
-          </div>
-            </>)}
-            <div className="flex justify-center bg-black text-white w-52 mt-2 mx-auto rounded-lg cursor-pointer hover:bg-sky-500 duration-200">
+            <div className="flex justify-center bg-gray-300 text-gray-500 w-52 h-10 mt-5 mb-2 mx-auto rounded-lg cursor-pointer hover:bg-sky-500 duration-200">
             <button
             onClick={goToPayment}>Continue to payment</button>
             </div>
+          </div>
+            </>)}
         </div>
         </div>
         </div>

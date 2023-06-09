@@ -65,7 +65,7 @@ export default function Navbar() {
         <nav className="sticky top-0 bg-white p-5 w-full flex justify-end md:justify-center items-center text-gray-400 h-16 z-50 max-w-7xl mx-auto">
           <Link href='/' className="hidden md:flex items-center">
       <Image src={logo} alt="logo" width={50} height={50}/>
-      <h1 className="text-xl text-sky-500">Ecommerce Shop</h1>
+      <h1 className="text-xl text-sky-500">E-Shop</h1>
   </Link>
   <ul className='hidden text-xl md:flex xl:flex flex-1 justify-center font-medium mr-10'>
     <Link href={"/"}>
@@ -154,7 +154,7 @@ export default function Navbar() {
               </div>
               <div className="flex justify-center items-center text-center text-black">
               <BsTrash3 size={20} />
-              <button onClick={clearCart} className="font-bold ml-2"
+              <button onClick={clearCart} className="font-bold ml-1"
               >Clear cart</button>
             </div>
               <div onClick={handleCart} className='rounded-full bg-gray-200 shadow-md p-2.5 cursor-pointer'><AiOutlineClose className="text-sky-500"/>
@@ -183,7 +183,7 @@ export default function Navbar() {
       {products.map((product: Product) => (
         <div key={product._id} className="flex items-center justify-between mb-3">
           <div className="grid items-center">
-            <img src={product.picture} alt="product photo" className="object-contain max-h-full max-w-full mr-3" width={90} height={50} />
+            <Image src={product.picture} alt="product photo" className="object-contain max-h-full max-w-full mr-3" width={90} height={50} />
             <p className="text-gray-500 font-bold">{product.name}</p>
           </div>
           <div className="grid">
@@ -194,7 +194,7 @@ export default function Navbar() {
           </div>
           <div className="flex items-center mt-3 text-black">
             <BsTrash3 size={20} />
-            <button onClick={() => removeProd(product)} className="font-bold ml-2">Remove</button>
+            <button onClick={() => removeProd(product)} className="font-bold ml-1">Remove</button>
           </div>
           </div>
           <p className="font-bold text-black">
