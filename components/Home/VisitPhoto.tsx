@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import office from '../public/pictures/homeoffice.jpg';
+import office from '../../public/pictures/homeoffice.jpg';
 import { BsArrowDown } from 'react-icons/bs';
 import { Link as ScrollLink } from 'react-scroll';
 

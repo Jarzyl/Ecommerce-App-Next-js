@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import monitor from '../public/pictures/monitor.jpg';
-import laptop from '../public/pictures/laptop.webp';
-import desk from '../public/pictures/whyus.webp';
-import lamp from '../public/pictures/lamp.jpg';
+import monitor from '../../public/pictures/monitor.jpg';
+import laptop from '../../public/pictures/laptop.webp';
+import desk from '../../public/pictures/whyus.webp';
+import lamp from '../../public/pictures/lamp.jpg';
 import { BsArrowUpRight } from 'react-icons/bs';
 
 export default function TopCategories() {

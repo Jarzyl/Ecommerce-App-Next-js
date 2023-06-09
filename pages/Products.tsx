@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import { initMongoose } from "@/lib/mongoose";
 import { findAllProducts } from './api/products'
-import Layout from "@/components/Layout";
+import Layout from "@/components/Layout/Layout";
 import ProductCart from "@/components/ProductCart";
 
 interface Product {

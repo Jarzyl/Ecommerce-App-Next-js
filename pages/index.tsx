@@ -2,11 +2,11 @@ import Head from "next/head";
 import { useState } from "react";
 import { initMongoose } from "@/lib/mongoose";
 import { findAllProducts } from '../pages/api/products'
-import Layout from "@/components/Layout";
+import Layout from "@/components/Layout/Layout";
 import ProductCart from "@/components/ProductCart";
-import TopCategories from "@/components/TopCategories";
-import VisitPhoto from "@/components/VisitPhoto";
-import ChooseUs from "@/components/ChooseUs";
+import TopCategories from "@/components/Home/TopCategories";
+import VisitPhoto from "@/components/Home/VisitPhoto";
+import ChooseUs from "@/components/Home/ChooseUs";
 import { BsSearch } from 'react-icons/bs';
 
 

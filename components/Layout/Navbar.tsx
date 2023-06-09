@@ -2,11 +2,12 @@ import { useContext, useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { CartContext } from "./CartContext";
-import { BsCart, BsSearch, BsPerson, BsTrash3 } from 'react-icons/bs';
-import { AiOutlineClose, AiOutlineMenu, AiOutlineHeart } from 'react-icons/ai';
+import { CartContext } from "../CartContext";
+import { BsCart, BsSearch, BsPerson, BsTrash3, BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
+import { AiOutlineClose, AiOutlineMenu, AiOutlineHeart, AiOutlineMail } from 'react-icons/ai';
 import Image from "next/image";
-import logo from '../public/logo1.png';
+import logo from '../../public/logo1.png';
+
 interface Product {
   _id: string;
   name: string;
@@ -103,11 +104,14 @@ export default function Navbar() {
       
       {/* Hamburger and Cart Icon */}
       <div className="md:hidden flex-1">
-      <Image src={logo} alt="logo" width={50} height={50} className=""/>
+      <Link href='/' className="flex items-center">
+      <Image src={logo} alt="logo" width={50} height={50}/>
+      <h1 className="text-xl text-sky-500">E-Shop</h1>
+  </Link>
       </div>
       <div onClick={handleCart} className="md:hidden relative flex justify-center items-center cursor-pointer">
       <BsCart size={25} className="mr-2"/>
-      <span className="absolute top-0 right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-gray-300 transform translate-x-1/2 -translate-y-1/2 bg-indigo-400 rounded-full">{selectedProducts.length}</span>
+      <span className="absolute top-0 right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-black transform translate-x-1/2 -translate-y-1/2 bg-sky-500 rounded-full">{selectedProducts.length}</span>
     </div>
       <div className='md:hidden justify-end hover:scale-105 duration-200 ml-2' onClick={handleNav}><AiOutlineMenu size={25}/>
           </div>
@@ -120,34 +124,42 @@ export default function Navbar() {
               ? 'fixed left-0 top-0 w-[100%] md:w-[45%] h-screen bg-white p-10 ease-in duration-500'
               : 'fixed left-[-100%] top-0 p-10 ease-in duration-500'}>
           <div>
-            <div className='flex w-full items-center justify-between text-indigo-400'>
-              <div onClick={handleNav} className='rounded-full bg-gray-100 shadow-md p-2.5 cursor-pointer'><AiOutlineClose/>
+            <div className='flex w-full items-center justify-between text-sky-500'>
+              <div onClick={handleNav} className='rounded-full bg-gray-200 shadow-md p-2.5 cursor-pointer'><AiOutlineClose/>
               </div>
             </div>
           </div>
-          <div className='py-3 flex flex-col text-center'>
-            <ul className='uppercase text-indigo-400 font-medium'>
-              <li onClick={() => setNav(false)} className='py-4'>
+          <div className='py-2 flex flex-col text-center'>
+            <ul className='uppercase text-gray-400 font-medium'>
+              <li onClick={() => setNav(false)} className='py-3'>
               <Link href='/'>Home</Link>
               </li>
-              <li onClick={() => setNav(false)} className='py-4'>
+              <li onClick={() => setNav(false)} className='py-3'>
               <Link href='/Products'>Products</Link>
               </li>
-              <li onClick={() => setNav(false)} className='py-4'>
+              <li onClick={() => setNav(false)} className='py-3'>
               <Link href='/Contact'>Contact</Link>
               </li>
             </ul>
           </div>
+          <hr className="mb-2"/>
+          <div className="grid items-center justify-center mx-10">
+            <p className="text-gray-400 text-xl mb-3">Stay in contact with us:</p>
+          <div className="flex justify-center text-sky-500">
+            <a href="https://twitter.com/?lang=en" target="_blank" className="mx-2 hover:scale-125 duration-300"><BsTwitter size={20}/></a>
+            <a href="https://www.facebook.com/" target="_blank" className="mx-2 hover:scale-125 duration-300"><BsFacebook size={20}/></a>
+            <a href="https://www.instagram.com/" target="_blank" className="mx-2 hover:scale-125 duration-300"><BsInstagram size={20}/></a>
+            <a href="mailto:shop@gmail.com" target="_blank" className="mx-2 hover:scale-125 duration-300"><AiOutlineMail size={20}/></a>
+          </div>
         </div>
-      </div>
+        </div>
+        </div>
 
       {/* Cart */}
       <div className={ cart ? ' fixed right-0 top-0 w-full h-screen bg-black/70' : ''}>
-
         <div className={ cart
               ? 'fixed right-0 top-0 w-[100%] md:w-[35%] xl:w-[26%] h-screen bg-white p-6 ease-in duration-500 overflow-y-scroll'
               : 'fixed right-[-100%] top-0 p-10 ease-in duration-500 overflow-y-scroll'}>
-          <div>
             <div className='flex w-full items-center justify-between'>
               <div className="text-xl text-sky-500 font-bold">
                 <p>Your products: {selectedProducts.length}</p>
@@ -160,19 +172,17 @@ export default function Navbar() {
               <div onClick={handleCart} className='rounded-full bg-gray-200 shadow-md p-2.5 cursor-pointer'><AiOutlineClose className="text-sky-500"/>
               </div>
               </div>
-              <div className="grid w-72 xl:w-80">
+              <div className="grid">
             <div className=" justify-center items-center">
             {!selectedProducts?.length && ( <>
             <p className="text-xl font-medium mt-10 text-center">Your cart is empty</p>
-            <div className="flex justify-center items-center text-center mt-16">
-            <div className="bg-sky-500 rounded-lg border-2 w-52 cursor-pointer">
-                <Link href='/Products' className="text-black font-medium">Discover our products!</Link>
+            <div className="flex justify-center items-center bg-gray-700 text-gray-200 text-lg w-44 h-10 mt-24 mx-auto rounded-lg cursor-pointer hover:bg-sky-500 duration-200">
+                <Link href='/Products'>Discover our products!</Link>
                 </div>
-              </div>
-              </>
-            )}
+              </>)}
+
     {products && products.length > 0 && (
-    <>
+      <>
         <div className="w-[310px] md:w-[300px] xl:w-[370px] mt-4">
           <div className="flex justify-between uppercase mb-3">
           <p>Product</p>
@@ -207,16 +217,13 @@ export default function Navbar() {
         <p className="text-sky-500 text-xl xl:text-2xl">{total}$</p>
         <div></div>
       </div>
-      <div className="flex justify-center items-center text-center mt-16">
-            <button className="bg-sky-500 rounded-lg w-36 cursor-pointer">
-              <Link href='/Cart' className="text-black font-bold">Go to Cart</Link>
-              </button>
+            <div className="flex justify-center items-center bg-gray-700 text-gray-200 text-lg w-44 h-10 mt-24 mx-auto rounded-lg cursor-pointer hover:bg-sky-500 duration-200">
+              <Link href='/Cart'>Go to Cart</Link>
               </div>
           </div>
             </>)}
               </div>
             </div>
-          </div>
         </div>
       </div>
     </nav>

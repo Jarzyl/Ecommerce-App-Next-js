@@ -1,10 +1,8 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import { BsArrowDown, BsShieldFillCheck } from 'react-icons/bs';
 import { MdPriceCheck } from 'react-icons/md';
 import { FaShippingFast } from 'react-icons/fa';
-import whyus from '../public/pictures/whyus.webp';
-import deliver from '../public/pictures/delivery.webp';
+import deliver from '../../public/pictures/delivery.webp';
 
 
 export default function ChooseUs() {

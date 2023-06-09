@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Layout from '@/components/Layout';
+import Layout from '@/components/Layout/Layout';
 
 interface FormInputs {
   name: string;

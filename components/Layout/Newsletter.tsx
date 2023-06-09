@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import news from '../public/pictures/news.jpg'
+import news from '../../public/pictures/news.jpg'
 
 function Newsletter () {
   const [, setIsSubscribed] = useState(false);
@@ -49,7 +49,7 @@ function Newsletter () {
   
     return (
       <>
-      <div className='relative max-w-xs md:max-w-5xl h-[300px] mx-auto mt-16 md:mt-48 mb-10 md:mb-20'>
+      <div className='relative max-w-xs md:max-w-5xl h-[300px] mx-auto mt-32 md:mt-48 mb-10 md:mb-20'>
         <div className='bg-black' style={{ opacity: 0.8 }}>
       <Image src={news} alt='Office image' fill quality={100} className="object-cover rounded-3xl"
       />

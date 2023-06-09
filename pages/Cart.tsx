@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { CartContext } from "@/components/CartContext";
-import Layout from "@/components/Layout";
+import Layout from "@/components/Layout/Layout";
 import { BsTrash3 } from 'react-icons/bs';
 import Link from "next/link";
 
@@ -144,7 +144,7 @@ export default function CartPage() {
         </div>))}
           </div>
             </>)}
-        <div className="bg-white w-72 h-48 xl:h-52 xl:w-80 border-2 border-gray-100 rounded-lg mx-auto mt-10 text-lg md:text-xl xl:text-2xl">
+        <div className="bg-white w-72 h-52 md:h-full xl:w-80 border-2 border-gray-100 rounded-lg mx-auto mt-10 text-lg md:text-xl xl:text-2xl">
             <div className="p-4 text-gray-400">
             <div className="flex justify-between mb-2">
             <p>Subtotal</p> <p className="font-bold text-black">{total}$</p>
@@ -157,7 +157,7 @@ export default function CartPage() {
             <p>Grand Total</p> <p className="font-bold">{total}$</p>
             </div>
             </div>
-        <div className="flex justify-center bg-black text-white w-52 mt-2 mx-auto rounded-lg cursor-pointer hover:bg-sky-500 duration-200">
+        <div className="flex justify-center items-center bg-gray-700 text-gray-200 text-lg w-44 h-10 mt-2 mb-4 mx-auto rounded-lg cursor-pointer hover:bg-sky-500 duration-200">
             <Link href='/Checkout'>Checkout now</Link>
         </div>
         </div>
