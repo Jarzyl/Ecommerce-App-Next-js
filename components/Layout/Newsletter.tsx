@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import newsletter from '../../public/pictures/news.jpg';
 
-function Newsletter () {
+export default function Newsletter () {
   const [, setIsSubscribed] = useState(false);
   const emailInputRef = useRef<HTMLInputElement>(null);
 
@@ -79,5 +79,3 @@ function Newsletter () {
     </>    
   );
 };
-
-export default Newsletter;

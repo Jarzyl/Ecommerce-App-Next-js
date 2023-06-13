@@ -1,12 +1,11 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useRouter } from 'next/router';
+import Link from "next/link";
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { CartContext } from "@/components/Products/CartContext";
 import Layout from "@/components/Layout/Layout";
 import { BsTrash3 } from 'react-icons/bs';
-import Link from "next/link";
 
 interface Product {
     _id: string;

@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from 'next/router';
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
@@ -7,7 +8,6 @@ import { CartContext } from "@/components/Products/CartContext";
 import Layout from "@/components/Layout/Layout";
 import ShippingOption from "@/components/Order/ShippingOption";
 import { MdOutlineCancel} from 'react-icons/md';
-import Link from "next/link";
 import Order from "@/components/Order/Order";
 
 interface Product {

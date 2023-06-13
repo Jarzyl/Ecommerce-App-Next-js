@@ -1,10 +1,10 @@
-    import { useState } from "react";
+import { useState } from "react";
 
-    interface ShippingOptionProps {
+interface ShippingOptionProps {
     title: string;
     duration: string;
     price: string;
-    }
+}
 
 export default function ShippingOption({ title, duration, price }: ShippingOptionProps) {
     const [isSelected, setIsSelected] = useState(false);

@@ -7,8 +7,8 @@ import deliver from '../../public/pictures/delivery.webp';
 export default function ChooseUs() {
   return (
     <>
-    <div id="" className='grid lg:flex justify-center lg:justify-between mt-10 md:mt-32 xl:mt-40 max-w-[400px] md:max-w-3xl lg:max-w-4xl xl:max-w-6xl mx-auto mb-8 px-6 md:px-0'>
-      <h3 className="text-2xl md:text-3xl text-black text-left font-bold mb-3 lg:mb-0">Why<br/> Choose Us</h3>
+    <div className='grid lg:flex justify-center lg:justify-between mt-10 md:mt-32 xl:mt-40 max-w-[400px] md:max-w-3xl lg:max-w-4xl xl:max-w-6xl mx-auto mb-8 px-6 md:px-0'>
+      <p className="text-2xl md:text-3xl text-black text-left font-bold mb-3 lg:mb-0">Why<br/> Choose Us</p>
       <p className='text-xl text-gray-400 w-full md:w-[420px] mt-3 mb-3 md:mt-0 lg:mb-0'>We strive to provide our customers with the best possible shopping experience</p>
       <div className='justify-center flex h-20 w-30'>
         <div className=' w-44 h-24 bg-gray-200 rounded-full'>

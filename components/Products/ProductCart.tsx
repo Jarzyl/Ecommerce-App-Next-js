@@ -73,8 +73,8 @@ export default function ProductCart({ _id, name, price, description, picture }: 
         <h3 className="text-lg text-left ml-3 text-black font-bold mt-1">{name}</h3>
         <p className="text-sm mt-1 ml-3 text-gray-500">{description}</p>
         <div className="flex mt-2">
-          <div className="text-lg font-medium grow ml-3 mb-3 text-sky-500">{price}$</div>
-              <BsCart onClick={addToCart} className="text-sky-500 mr-2 cursor-pointer" size={25}/>
+          <div className="text-lg font-medium grow ml-3 mb-3 text-gray-800">{price}$</div>
+              <BsCart onClick={addToCart} className="text-gray-600 mr-2 cursor-pointer" size={25}/>
       </div>
     </div>
   );

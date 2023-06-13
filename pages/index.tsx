@@ -97,8 +97,3 @@ export async function getServerSideProps() {
     },
   };
 };
-
-
-{/* <div className="w-3/5 mx-auto py-4">
-      <h3 className="md:text-2xl font-medium text-indigo-400 text-center mt-6">Work more efficiently and comfortably with our products! We offer a wide range of furniture and accessories to organize your home office, such as ergonomic chairs, comfortable desks, stylish lamps, as well as high-quality laptops, monitors, mice, and keyboards. Ensure your health and comfort while working from home by choosing our products. Check out our offer today!</h3>
-    </div> */}

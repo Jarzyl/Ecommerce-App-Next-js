@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: "Palanquin",
+        sans: ["Quicksand", "sans-serif"],
       },
     },
   },

@@ -1,11 +1,11 @@
 import { useContext, useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { CartContext } from "../Products/CartContext";
 import { BsCart, BsSearch, BsPerson, BsTrash3, BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
 import { AiOutlineClose, AiOutlineMenu, AiOutlineHeart, AiOutlineMail } from 'react-icons/ai';
-import Image from "next/image";
 import logo from '../../public/logo1.png';
 
 interface Product {
@@ -26,11 +26,11 @@ export default function Navbar() {
     const path = router.pathname;
 
     const handleNav = () => {
-      setNav(!nav);
+      setNav(prev => !prev);
     };
 
     const handleCart = () => {
-      setCart(!cart);
+      setCart(cart => !cart);
     };
 
     useEffect(() => {
@@ -70,24 +70,17 @@ export default function Navbar() {
   </Link>
   <ul className='hidden text-xl md:flex xl:flex flex-1 justify-center font-medium'>
     <Link href={"/"}>
-      <div
-        className={
-          (path === "/" ? "text-black mr-3" : "") +
-          " flex justify-center items-center mr-3"}>
-        <span>Home</span>
+      <div className={(path === "/" ? "text-black mr-3" : "") +
+          " flex justify-center items-center mr-3"}>Home
       </div>
     </Link>
     <Link href={"/Products"}>
-      <div
-        className={
-          (path === "/Products" ? "text-black mr-3" : "") +
+      <div className={(path === "/Products" ? "text-black mr-3" : "") +
           " flex justify-center items-center mr-3"}>Products
       </div>
     </Link>
     <Link href={"/Contact"}>
-      <div
-        className={
-          (path === "/Contact" ? "text-black mr-3" : "") +
+      <div className={(path === "/Contact" ? "text-black mr-3" : "") +
           " flex justify-center items-center mr-3"}>Contact
       </div>
     </Link>
@@ -109,13 +102,17 @@ export default function Navbar() {
       <h1 className="text-xl text-sky-500">E-Shop</h1>
   </Link>
       </div>
-      <div onClick={handleCart} className="md:hidden relative flex justify-center items-center cursor-pointer">
-      <BsCart size={25} className="mr-2"/>
-      <span className="absolute top-0 right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-black transform translate-x-1/2 -translate-y-1/2 bg-sky-500 rounded-full">{selectedProducts.length}</span>
+      <div className="md:hidden flex">
+      <BsSearch size={20} className="mr-2"/>
+      <AiOutlineHeart size={20} className="mr-2"/>
+      <div onClick={handleCart} className="md:hidden relative flex justify-center items-center">
+      <BsCart size={20} className="mr-2 mb-1"/>
+      <span className="absolute bottom-1 right-3 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-black transform translate-x-1/2 -translate-y-1/2 bg-sky-500 rounded-full">{selectedProducts.length}</span>
     </div>
-      <div className='md:hidden justify-end hover:scale-105 duration-200 ml-2' onClick={handleNav}><AiOutlineMenu size={25}/>
+    <BsPerson size={20}/>
+      <div className='md:hidden justify-end hover:scale-105 duration-200 ml-2' onClick={handleNav}><AiOutlineMenu size={20}/>
           </div>
-
+          </div>
       {/* Mobile Menu */}
       <div className={
           nav ? 'md:hidden fixed left-0 top-0 w-full h-screen bg-black/70' : ''}>

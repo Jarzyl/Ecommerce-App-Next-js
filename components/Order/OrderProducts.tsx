@@ -32,10 +32,10 @@ export default function OrderProducts() {
         for (const _id of selectedProducts) {
             const price = products.find(p => p._id === _id)?.price || 0;
             total += price;
-    }
+        }
 
-  return (
-           <>
+    return (
+        <>
             {products && products.length > 0 && (
             <>
                 <div className="flex justify-between font-bold text-gray-700 mt-2"> Your products

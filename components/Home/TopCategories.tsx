@@ -10,10 +10,10 @@ export default function TopCategories() {
   return (
     <>
     <div id="" className='grid md:flex justify-between mt-10 md:mt-32 xl:mt-40 max-w-[400px] md:max-w-3xl lg:max-w-4xl xl:max-w-6xl mx-auto mb-8 px-6 md:px-0'>
-      <h3 className="text-2xl md:text-3xl text-black text-left font-bold">Top<br/> Categories</h3>
+      <p className="text-2xl md:text-3xl text-black text-left font-bold">Top<br/> Categories</p>
       <p className='text-xl text-gray-400 w-full md:w-[420px] mt-3 mb-3 md:mt-0 md:mb-0'>we offer a wide variety of office products to suit your unique style and needs</p>
       <div className='justify-center flex h-12 w-30'>
-      <Link href='/Products' className='py-2 mb-1 px-3 text-md xl:text-xl text-black border-2 border-gray-400 rounded-xl flex'>Discover More
+      <Link href='/Products' aria-label='Check products' className='py-2 mb-1 px-3 text-md xl:text-xl text-black border-2 border-gray-400 rounded-xl flex'>Discover More
       <BsArrowUpRight size={20} className='ml-2'/>
         </Link>
         </div>
@@ -24,7 +24,7 @@ export default function TopCategories() {
             <Image src={desk} alt="photo 1" fill className="object-cover rounded-3xl"/>
             <div className="absolute bottom-6 left-2 p-1 flex">
               <p className="font-bold text-3xl">Desks</p>
-              <Link href='/Products' className='ml-2'>
+              <Link href='/Products' aria-label='Check products' className='ml-2'>
                 <BsArrowUpRight size={30}/>
               </Link>
             </div>
@@ -35,7 +35,7 @@ export default function TopCategories() {
             <Image src={monitor} alt="photo 3" fill className="object-cover rounded-3xl"/>
             <div className="absolute bottom-6 left-2 p-1 flex">
               <p className="font-bold text-3xl">Monitors</p>
-              <Link href='/Products' className='ml-2'>
+              <Link href='/Products' aria-label='Check products' className='ml-2'>
                 <BsArrowUpRight size={30}/>
               </Link>
             </div>
@@ -45,7 +45,7 @@ export default function TopCategories() {
             <Image src={laptop} alt="photo 4" fill className="object-cover rounded-3xl"/>
             <div className="absolute bottom-6 left-2 p-1 flex">
               <p className="font-bold text-3xl">Laptops</p>
-              <Link href='/Products' className='ml-2'>
+              <Link href='/Products' aria-label='Check products' className='ml-2'>
                 <BsArrowUpRight size={30}/>
               </Link>
             </div>
@@ -54,7 +54,7 @@ export default function TopCategories() {
             <Image src={lamp} alt="photo 4" fill className="object-cover rounded-3xl"/>
             <div className="absolute bottom-6 left-2 p-1 flex">
               <p className="font-bold text-3xl">Lamps</p>
-              <Link href='/Products' className='ml-2'>
+              <Link href='/Products' aria-label='Check products' className='ml-2'>
                 <BsArrowUpRight size={30}/>
               </Link>
             </div>
