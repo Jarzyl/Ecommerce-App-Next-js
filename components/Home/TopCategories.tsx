@@ -9,7 +9,7 @@ import { BsArrowUpRight } from 'react-icons/bs';
 export default function TopCategories() {
   return (
     <>
-    <div id="" className='grid md:flex justify-between mt-10 md:mt-32 xl:mt-40 max-w-[400px] md:max-w-[1100px] mx-auto mb-8 px-6 md:px-0'>
+    <div id="" className='grid md:flex justify-between mt-10 md:mt-32 xl:mt-40 max-w-[400px] md:max-w-3xl lg:max-w-4xl xl:max-w-6xl mx-auto mb-8 px-6 md:px-0'>
       <h3 className="text-2xl md:text-3xl text-black text-left font-bold">Top<br/> Categories</h3>
       <p className='text-xl text-gray-400 w-full md:w-[420px] mt-3 mb-3 md:mt-0 md:mb-0'>we offer a wide variety of office products to suit your unique style and needs</p>
       <div className='justify-center flex h-12 w-30'>
@@ -18,42 +18,42 @@ export default function TopCategories() {
         </Link>
         </div>
       </div>
-      <div className="grid md:flex text-white max-w-7xl mx-auto justify-center items-center">
-      <div className="flex flex-col w-[300px] md:w-[550px] md:mr-3 z-40">
-          <div className="relative h-[200px] md:h-[400px] hover:scale-105 duration-200">
+      <div className="grid md:flex text-white md:max-w-3xl lg:max-w-4xl xl:max-w-7xl mx-auto justify-center items-center">
+      <div className="flex flex-col w-[300px] md:w-[500px] lg:w-[550px] md:mr-3 z-40">
+          <div className="relative h-[200px] md:h-[400px] lg:hover:scale-105 duration-200">
             <Image src={desk} alt="photo 1" fill className="object-cover rounded-3xl"/>
             <div className="absolute bottom-6 left-2 p-1 flex">
-              <p className="font-bold text-3xl">Desk</p>
+              <p className="font-bold text-3xl">Desks</p>
               <Link href='/Products' className='ml-2'>
                 <BsArrowUpRight size={30}/>
               </Link>
             </div>
           </div> 
         </div>
-        <div className="flex flex-col w-[300px] md:w-[550px]">
-          <div className="relative h-[200px] mt-3 md:mt-0 hover:scale-105 duration-200">
+        <div className="flex flex-col w-[300px] md:w-[500px] lg:w-[550px]">
+          <div className="relative h-[200px] md:h-[190px] mt-3 md:mt-0 lg:hover:scale-105 duration-200">
             <Image src={monitor} alt="photo 3" fill className="object-cover rounded-3xl"/>
             <div className="absolute bottom-6 left-2 p-1 flex">
-              <p className="font-bold text-3xl">Monitor</p>
+              <p className="font-bold text-3xl">Monitors</p>
               <Link href='/Products' className='ml-2'>
                 <BsArrowUpRight size={30}/>
               </Link>
             </div>
           </div>
           <div className='grid md:grid-cols-2 gap-3 mx-auto mt-3'>
-          <div className="relative h-[200px] md:h-[190px] w-[300px] md:w-[267px] hover:scale-105 duration-200">
+          <div className="relative h-[200px] md:h-[190px] w-[300px] md:w-[190px] lg:w-[217px] xl:w-[267px] lg:hover:scale-105 duration-200">
             <Image src={laptop} alt="photo 4" fill className="object-cover rounded-3xl"/>
             <div className="absolute bottom-6 left-2 p-1 flex">
-              <p className="font-bold text-3xl">Laptop</p>
+              <p className="font-bold text-3xl">Laptops</p>
               <Link href='/Products' className='ml-2'>
                 <BsArrowUpRight size={30}/>
               </Link>
             </div>
           </div>
-          <div className="relative h-[200px] md:h-[190px] w-[300px] md:w-[267px] hover:scale-105 duration-200">
+          <div className="relative h-[200px] md:h-[190px] w-[300px] md:w-[190px] lg:w-[217px] xl:w-[267px] lg:hover:scale-105 duration-200">
             <Image src={lamp} alt="photo 4" fill className="object-cover rounded-3xl"/>
             <div className="absolute bottom-6 left-2 p-1 flex">
-              <p className="font-bold text-3xl">Lamp</p>
+              <p className="font-bold text-3xl">Lamps</p>
               <Link href='/Products' className='ml-2'>
                 <BsArrowUpRight size={30}/>
               </Link>

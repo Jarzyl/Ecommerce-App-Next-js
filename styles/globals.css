@@ -5,7 +5,7 @@
 /* Scroll bar */
 
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 7px;
   }
   
   ::-webkit-scrollbar-track {
@@ -13,10 +13,16 @@
   }
   
   ::-webkit-scrollbar-thumb {
-    background: #a5b4fc;
+    background: #0ea5e9;
     border-radius: 3px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: #818cf8;
+    background: #38bdf8;
+  }
+
+  @media (max-width: 768px) {
+    .hover-scale {
+      pointer-events: none;
+    }
   }

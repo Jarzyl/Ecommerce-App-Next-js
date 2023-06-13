@@ -20,7 +20,6 @@ export default async function handle(req: any, res: any) {
       res.json(products);
     }
   } catch (error) {
-    console.error(error); // Dodany console log
     res.status(500).send('Internal Server Error');
   }
 }

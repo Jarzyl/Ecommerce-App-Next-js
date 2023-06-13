@@ -3,12 +3,11 @@ import { useState } from "react";
 import { initMongoose } from "@/lib/mongoose";
 import { findAllProducts } from '../pages/api/products'
 import Layout from "@/components/Layout/Layout";
-import ProductCart from "@/components/ProductCart";
+import ProductCart from "@/components/Products/ProductCart";
 import TopCategories from "@/components/Home/TopCategories";
 import VisitPhoto from "@/components/Home/VisitPhoto";
 import ChooseUs from "@/components/Home/ChooseUs";
 import { BsSearch } from 'react-icons/bs';
-
 
 interface Product {
   _id: string;
@@ -55,8 +54,8 @@ export default function Home({ products }: HomeProps) {
         value={phrase} 
         onChange={e => setPhrase(e.target.value)} 
         type="text" 
-        placeholder="Search lamp, mouse ..." 
-        className="bg-gray-100 w-80 py-3 px-5 rounded-xl text-sky-500 border-gray-100 focus:outline-none focus:placeholder-black" 
+        placeholder="Search lamp, mouse..." 
+        className="bg-gray-100 w-52 lg:w-80 py-3 px-5 rounded-xl text-sky-500 border-gray-100 focus:outline-none focus:placeholder-black" 
       />
     </div>
 

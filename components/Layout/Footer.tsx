@@ -14,14 +14,14 @@ export default function Footer () {
         <a href="https://twitter.com/?lang=en" target="_blank" className="mx-2 hover:scale-125 duration-300"><BsTwitter size={20}/></a>
         <a href="https://www.facebook.com/" target="_blank" className="mx-2 hover:scale-125 duration-300"><BsFacebook size={20}/></a>
         <a href="https://www.instagram.com/" target="_blank" className="mx-2 hover:scale-125 duration-300"><BsInstagram size={20}/></a>
-        <a href="mailto:shop@gmail.com" target="_blank" className="mx-2 hover:scale-125 duration-300"><AiOutlineMail size={20}/></a>
+        <a href="mailto:e-shop@gmail.com" target="_blank" className="mx-2 hover:scale-125 duration-300"><AiOutlineMail size={20}/></a>
       </div>
     </div>
     <div className="mx-6 pt-3 text-left">
       <div className="grid md:grid-cols-5 gap-5 md:gap-32">
         <div>
-          <p className="mb-4 text-xl xl:text-2xl flex items-center justify-center font-semibold md:justify-start text-black">E-Shop</p>
-          <p className="md:w-56 text-slate-400 text-sm xl:text-md ml-0 md:ml-1 text-center md:text-left">
+          <p className="mb-4 text-xl xl:text-2xl font-semibold text-center md:justify-start text-black">E-Shop</p>
+          <p className="md:w-40 lg:w-56 text-slate-400 text-sm xl:text-md ml-0 md:ml-1 text-center md:text-left">
           Transform your workspace with our premium office supplies. Shop now for top-quality office furniture, stationery, and accessories to create an efficient and stylish office environment.
           </p>
         </div>

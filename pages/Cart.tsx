@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useRouter } from 'next/router';
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
-import { CartContext } from "@/components/CartContext";
+import { CartContext } from "@/components/Products/CartContext";
 import Layout from "@/components/Layout/Layout";
 import { BsTrash3 } from 'react-icons/bs';
 import Link from "next/link";
@@ -20,14 +20,6 @@ interface Product {
 export default function CartPage() {
     const {selectedProducts, addProduct, deleteProduct, removeProduct, clearCart} = useContext(CartContext);
     const [products, setProducts] = useState<Product[]>([]);
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [city, setCity] = useState('');
-    const [postalCode, setPostalCode] = useState('');
-    const [streetAddress, setStreetAddress] = useState('');
-    const [country, setCountry] = useState('');
-    const router = useRouter();
-    const {success, canceled} = router.query;
 
     useEffect(() => {
         if (selectedProducts.length > 0) {
@@ -52,42 +44,10 @@ export default function CartPage() {
         removeProduct(product._id, selectedProducts.filter(id => id === product._id).length);
       }
 
-    async function goToPayment() {
-        const response = await axios.post('/api/checkout', {
-        name,email,city,postalCode,streetAddress,country,
-        selectedProducts,
-        });
-        if (response.data.url) {
-        window.location = response.data.url;
-        }
-    }
-
     let total = 0;
         for (const _id of selectedProducts) {
             const price = products.find(p => p._id === _id)?.price || 0;
             total += price;
-    }
-
-    if (success) {
-        return (
-        <Layout>
-            <div className="grid text-center justify-center items-center mt-28 font-medium">
-            <h1 className="text-2xl text-green-500 mb-10">Thanks for your order!</h1>
-            <p className="text-2xl text-green-500">We will email you when your order will be sent.</p>
-            </div>
-        </Layout>
-        );
-    }
-        
-    if (canceled) {
-        return (
-        <Layout>
-            <div className="grid text-center justify-center items-center mt-28 font-medium">
-            <h1 className="text-2xl text-red-500 mb-10">Payment canceled!</h1>
-            <p className="text-2xl text-red-500">Your payment has not been processed. Try again.</p>
-            </div>
-        </Layout>
-        );
     }
 
     return (
@@ -98,14 +58,14 @@ export default function CartPage() {
             <link rel="icon" type="image/png" href="/shop.png"/>
             </Head>
             <Layout>
-        <div className="max-w-[400px] md:max-w-[1100px] mx-auto bg-white justify-center items-center mt-6">
+        <div className="max-w-[400px] md:max-w-2xl lg:max-w-4xl xl:max-w-7xl mx-auto bg-white justify-center items-center mt-6">
             <div className="grid md:flex">
             
             {!selectedProducts?.length && (
             <h1 className="text-xl font-medium mt-10 text-center text-red-500">Your cart is empty!</h1>)}
     {products && products.length > 0 && (
     <>
-        <div className="w-[330px] md:w-[700px] mx-auto">
+        <div className="w-[330px] md:w-[500px] xl:w-[700px] mx-auto">
         <div className="flex justify-between">
             <p className="text-3xl md:text-4xl xl:text-5xl text-black font-bold mt-8 mb-6">Cart</p>
             <div className="flex justify-center items-center text-center text-black mt-2">
@@ -144,7 +104,7 @@ export default function CartPage() {
         </div>))}
           </div>
             </>)}
-        <div className="bg-white w-72 h-52 md:h-full xl:w-80 border-2 border-gray-100 rounded-lg mx-auto mt-10 text-lg md:text-xl xl:text-2xl">
+        <div className="bg-white w-72 h-52 md:h-full xl:w-80 border-2 border-gray-100 rounded-lg mx-auto mt-10 text-lg md:text-xl xl:text-2xl ml-6 lg:ml-0">
             <div className="p-4 text-gray-400">
             <div className="flex justify-between mb-2">
             <p>Subtotal</p> <p className="font-bold text-black">{total}$</p>

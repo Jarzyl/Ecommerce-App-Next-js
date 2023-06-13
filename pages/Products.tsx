@@ -3,7 +3,7 @@ import { useState } from "react";
 import { initMongoose } from "@/lib/mongoose";
 import { findAllProducts } from './api/products'
 import Layout from "@/components/Layout/Layout";
-import ProductCart from "@/components/ProductCart";
+import ProductCart from "@/components/Products/ProductCart";
 
 interface Product {
   _id: string;
@@ -51,7 +51,7 @@ export default function Category({ products }: CategoryProps) {
             <div className="grid grid-cols-4 md:flex">
             {categoriesNames.map(categoryName => (
                 <button key={categoryName}
-                    className={`text-lg mr-2 mb-3 md:mr-4 border-4 border-gray-100 h-10 w-20 rounded-xl bg-gray-100 text-black capitalize p-0.5 ${category === categoryName ? 'font-bold bg-sky-500 border-sky-500' : ''}`}
+                    className={`text-lg mr-2 mb-3 lg:mr-4 border-4 border-gray-100 h-10 w-20 rounded-xl bg-gray-100 text-black capitalize p-0.5 ${category === categoryName ? 'font-bold bg-sky-500 border-sky-500' : ''}`}
                     onClick={() => setCategory(categoryName)}>{categoryName}
                 </button>))}
           </div>

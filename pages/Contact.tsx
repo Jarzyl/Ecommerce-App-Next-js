@@ -45,83 +45,81 @@ export default function ContactForm() {
         <link rel="icon" type="image/png" href="/shop.png"/>
       </Head>
     <Layout>
-    <div className="w-full mx-auto py-6">
-      <h1 className="text-3xl font-bold text-indigo-400 text-center">Contact Us</h1>
-      <h2 className="text-xl md:text-2xl font-medium text-indigo-400 text-center mt-4">If you have any problem or question - write to us - we will help!</h2>
+    <div className="w-[300px] md:max-w-4xl xl:max-w-7xl mx-auto mt-10">
+      <h1 className="text-3xl font-bold text-black text-center">Contact Us</h1>
+      <h2 className="text-xl md:text-2xl font-medium text-gray-400 text-center mt-4">If you have any problem or question - write to us - we will help!</h2>
     </div>
-    <form onSubmit={handleSubmit(onSubmit)} className="w-80 mx-auto mt-3 md:mt-10 border-2 p-3 rounded-xl">
+    <form onSubmit={handleSubmit(onSubmit)} className="w-[300px] md:w-[500px] h-full mx-auto mt-3 md:mt-6 border-2 p-3 rounded-xl">
       <div className="mb-4">
-        <label htmlFor="name" className="block mb-2 font-bold text-indigo-300">
-          Name
+        <label htmlFor="name" className="block font-semibold text-black/60">
+          Full name
         </label>
         <input
           {...register('name', { required: true })}
           type="text"
           id="name"
-          placeholder='name'
-          className={`w-full bg-gray-100 py-2 px-4 rounded-xl text-indigo-300 border-2 border-gray-100 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300 ${
-            errors.name ? 'border-red-500' : 'bg-gray-100 w-60 py-2 px-4 rounded-xl text-indigo-300 border-2 border-gray-100 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300'
+          placeholder='Enter your full name'
+          className={`w-full border-2 py-2 my-1 p-2 rounded-lg bg-slate-100 focus:outline-none focus:border-sky-500 focus:placeholder-sky-500 text-sky-500 ${
+            errors.name ? 'border-red-500' : 'border-2 py-2 my-1 p-2 rounded-lg bg-slate-100 focus:outline-none focus:border-sky-500 focus:placeholder-sky-500 text-sky-500'
           }`}/>
         {errors.name && (
           <span className="text-sm text-red-500">Name is required</span>
         )}
       </div>
       <div className="mb-4">
-        <label htmlFor="email" className="block mb-2 font-bold text-indigo-300">
+        <label htmlFor="email" className="block font-semibold text-black/60">
           Email
         </label>
         <input
           {...register('email', { required: true })}
           type="email"
           id="email"
-          placeholder='email'
-          className={`w-full bg-gray-100 py-2 px-4 rounded-xl text-indigo-300 border-2 border-gray-100 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300 ${
-            errors.email ? 'border-red-500' : 'bg-gray-100 w-60 py-2 px-4 rounded-xl text-indigo-300 border-2 border-gray-100 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300'
+          placeholder='Enter your email address'
+          className={`w-full border-2 py-2 my-1 p-2 rounded-lg bg-slate-100 focus:outline-none focus:border-sky-500 focus:placeholder-sky-500 text-sky-500 ${
+            errors.email ? 'border-red-500' : 'border-2 py-2 my-1 p-2 rounded-lg bg-slate-100 focus:outline-none focus:border-sky-500 focus:placeholder-sky-500 text-sky-500'
           }`}/>
         {errors.email && (
           <span className="text-sm text-red-500">Email is required</span>
         )}
       </div>
       <div className="mb-4">
-        <label htmlFor="subject" className="block mb-2 font-bold text-indigo-300">
+        <label htmlFor="subject" className="block font-semibold text-black/60">
           Subject
         </label>
         <input
           {...register('subject', { required: true })}
           type="text"
           id="subject"
-          placeholder='subject'
-          className={`w-full bg-gray-100 py-2 px-4 rounded-xl text-indigo-300 border-2 border-gray-100 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300 ${
-            errors.subject ? 'border-red-500' : 'bg-gray-100 w-60 py-2 px-4 rounded-xl text-indigo-300 border-2 border-gray-100 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300'
+          placeholder='Enter your subject'
+          className={`w-full border-2 py-2 my-1 p-2 rounded-lg bg-slate-100 focus:outline-none focus:border-sky-500 focus:placeholder-sky-500 text-sky-500 ${
+            errors.subject ? 'border-red-500' : 'border-2 py-2 my-1 p-2 rounded-lg bg-slate-100 focus:outline-none focus:border-sky-500 focus:placeholder-sky-500 text-sky-500'
           }`}/>
         {errors.subject && (
           <span className="text-sm text-red-500">Subject is required</span>
         )}
       </div>
       <div className="mb-4">
-        <label htmlFor="message" className="block mb-2 font-bold text-indigo-300">
+        <label htmlFor="message" className="block font-semibold text-black/60">
           Message
         </label>
         <textarea
           {...register('message', { required: true })}
           id="message"
-          placeholder='Your message!'
-          className={`w-full bg-gray-100 py-2 px-4 rounded-xl text-indigo-300 border-2 border-gray-100 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300 ${
-            errors.message ? 'border-red-500' : 'bg-gray-100 w-60 py-2 px-4 rounded-xl text-indigo-300 border-2 border-gray-100 focus:outline-none focus:border-indigo-300 focus:placeholder-indigo-300'
+          placeholder='Enter your message'
+          className={`w-full border-2 py-2 my-1 p-2 rounded-lg bg-slate-100 focus:outline-none focus:border-sky-500 focus:placeholder-sky-500 text-sky-500 ${
+            errors.message ? 'border-red-500' : 'border-2 py-2 my-1 p-2 rounded-lg bg-slate-100 focus:outline-none focus:border-sky-500 focus:placeholder-sky-500 text-sky-500'
           }`}/>
         {errors.message && (
           <span className="text-sm text-red-500">Message is required</span>
         )}
       </div>
-      <div className='flex justify-center items-center'>
-      <button
-        type="submit"
-        className="px-4 py-2 font-bold text-white bg-indigo-400 rounded hover:bg-indigo-500 focus:outline-none">
-        Send message!
-      </button>
-      </div>
+      <div className="flex justify-center items-center bg-gray-700 text-gray-200 text-lg w-44 h-10 mt-5 mx-auto rounded-lg cursor-pointer hover:bg-sky-500 duration-200">
+            <button
+            type="submit">Send Message</button>
+            </div>
     </form>
     </Layout>
     </>
   );
 };
+
