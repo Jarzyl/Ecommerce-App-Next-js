@@ -49,7 +49,7 @@ export default function Newsletter () {
   
     return (
       <>
-      <div className='relative max-w-xs md:max-w-2xl lg:max-w-4xl xl:max-w-6xl h-[300px] mx-auto mt-16 md:mt-48 mb-10 md:mb-20'>
+      <div className='relative max-w-xs md:max-w-2xl lg:max-w-4xl xl:max-w-6xl h-[350px] mx-auto mt-16 md:mt-48 mb-10 md:mb-20'>
         <div className='bg-black' style={{ opacity: 0.3 }}>
       <Image src={newsletter} alt='Office image' fill quality={100} className="object-cover rounded-3xl"
       />

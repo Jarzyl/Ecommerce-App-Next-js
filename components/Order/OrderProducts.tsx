@@ -50,29 +50,29 @@ export default function OrderProducts() {
                     {selectedProducts.filter(id => id === products._id).length * products.price}$
                 </p>
                 </div>))}
-                <hr className="w-[300px] md:w-[520px] mb-2"/>
-            <div className="text-lg md:text-xl xl:text-2xl">
+                <hr className="w-[300px] md:w-[520px] mb-3"/>
+            <div className="text-lg md:text-xl">
             <div className="text-gray-400">
-            <div className="flex justify-between mb-2">
+            <div className="flex justify-between mb-3">
             <p className="text-gray-600">Subtotal</p> <p className="font-bold text-gray-700">{total}$</p>
             </div>
-            <hr className="w-[300px] md:w-[520px] mb-2"/>
-            <div className="flex justify-between mb-2">
+            <hr className="w-[300px] md:w-[520px] mb-3"/>
+            <div className="flex justify-between mb-3">
             <p>Applied discount code</p> <div className="bg-gray-200 border h-7 items-center justify-center flex rounded-lg p-1 text-base font-bold text-gray-600">0% OFF</div>
             </div>
-            <div className="flex justify-between mb-2">
+            <div className="flex justify-between mb-3">
             <p>Discount</p> <p className="text-gray-300">-0$</p>
             </div>
-            <div className="flex justify-between mb-2">
+            <div className="flex justify-between mb-3">
             <p>Shipment cost</p> <p className="text-gray-300">0$</p>
             </div>
-            <hr className="w-[300px] md:w-[520px] mb-2"/>
+            <hr className="w-[300px] md:w-[520px] mb-3"/>
             <div className="flex justify-between text-gray-700">
             <p>Grand Total</p> <p className="font-bold">{total}$</p>
             </div>
             </div>
             </div>
-            <div className="flex justify-center items-center bg-gray-700 text-gray-200 text-lg w-44 h-10 mt-5 mb-4 mx-auto rounded-lg cursor-pointer hover:bg-sky-500 duration-200">
+            <div className="flex justify-center items-center bg-gray-700 text-gray-200 text-lg w-52 h-10 mt-5 mb-4 mx-auto rounded-lg cursor-pointer hover:bg-sky-500 duration-200">
             <Link href='/'>Continue shopping</Link>
             </div>
             </>)}
