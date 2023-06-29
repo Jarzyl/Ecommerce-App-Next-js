@@ -1,28 +1,20 @@
-import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { CartContext } from "@/components/Products/CartContext";
 import Layout from "@/components/Layout/Layout";
 import ShippingOption from "@/components/Order/ShippingOption";
-import { MdOutlineCancel } from "react-icons/md";
 import Order from "@/components/Order/Order";
 import CustomHead from "@/components/Layout/CustomHead";
 import InputField from "@/components/Order/InputField";
-
-interface Product {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  picture: string;
-}
+import { useShopService } from "@/components/Products/ShopService";
+import { Product } from "@/components/Types/Product";
+import OrderCanceled from "@/components/Order/OrderCanceled";
 
 export default function CartPage() {
   const { selectedProducts } = useContext(CartContext);
+  const {total} = useShopService(); 
   const [products, setProducts] = useState<Product[]>([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -59,42 +51,12 @@ export default function CartPage() {
     }
   }
 
-  let total = 0;
-  for (const _id of selectedProducts) {
-    const price = products.find((p) => p._id === _id)?.price || 0;
-    total += price;
-  }
-
   if (success) {
-    return <Order />;
+    return <Order />
   }
 
   if (canceled) {
-    return (
-      <>
-        <CustomHead title="Ecommerce Shop | Order" icon="/shop.png" />
-        <Layout>
-          <div className="grid w-[330px] md:w-[550px] h-full mx-auto border-2 border-gray-200 rounded-lg justify-center mt-28 font-medium p-2">
-            <div className="grid justify-center text-center mx-auto">
-              <MdOutlineCancel
-                size={40}
-                className="text-red-500 mx-auto mt-3"
-              />
-              <h1 className="text-2xl text-gray-700 font bold mt-1">
-                Payment canceled!
-              </h1>
-              <h2 className="text-sm text-gray-400 mt-2 mb-2">
-                Your payment has not been processed. Try again.
-              </h2>
-              <hr className="w-[300px] md:w-[520px]" />
-            </div>
-            <div className="flex justify-center items-center bg-gray-700 text-gray-200 text-lg w-44 h-10 mt-5 mb-4 mx-auto rounded-lg cursor-pointer hover:bg-sky-500 duration-200">
-              <Link href="/">Go back to shop</Link>
-            </div>
-          </div>
-        </Layout>
-      </>
-    );
+    return <OrderCanceled/>
   }
 
   return (

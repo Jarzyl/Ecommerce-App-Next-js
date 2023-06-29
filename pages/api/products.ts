@@ -10,9 +10,9 @@ export default async function handle(req: any, res: any) {
     await initMongoose();
     const { ids } = req.query;
     if (ids) {
-      const idsArray = ids.split(',');
+      const idsArray = ids.split(",");
       const products = await Product.find({
-        '_id': { $in: idsArray }
+        _id: { $in: idsArray },
       }).exec();
       res.json(products);
     } else {
@@ -20,6 +20,6 @@ export default async function handle(req: any, res: any) {
       res.json(products);
     }
   } catch (error) {
-    res.status(500).send('Internal Server Error');
+    res.status(500).send("Internal Server Error");
   }
 }

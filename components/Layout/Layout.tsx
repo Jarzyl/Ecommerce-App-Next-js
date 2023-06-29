@@ -8,15 +8,14 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps) {
-
   return (
     <>
-    <div id="top">
-      <Navbar />
-      {children}
-    </div>
-      <Newsletter/>
-      <Footer/>
-      </>
+      <div id="top">
+        <Navbar />
+        {children}
+      </div>
+      <Newsletter />
+      <Footer />
+    </>
   );
-};
+}

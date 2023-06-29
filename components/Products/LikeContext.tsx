@@ -34,4 +34,4 @@ export const LikesProvider = ({ children }: LikesProviderProps) => {
       {children}
     </LikesContext.Provider>
   );
-};
+}

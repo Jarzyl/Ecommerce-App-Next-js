@@ -8,15 +8,7 @@ import VisitPhoto from "@/components/Home/VisitPhoto";
 import ChooseUs from "@/components/Home/ChooseUs";
 import { BsSearch } from "react-icons/bs";
 import CustomHead from "@/components/Layout/CustomHead";
-
-interface Product {
-  _id: string;
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  picture: string;
-}
+import { Product } from "@/components/Types/Product";
 
 interface HomeProps {
   products: Product[];

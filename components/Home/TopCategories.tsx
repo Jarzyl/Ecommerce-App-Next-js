@@ -9,9 +9,7 @@ import { BsArrowUpRight } from "react-icons/bs";
 export default function TopCategories() {
   return (
     <>
-      <div
-        className="grid md:flex justify-between mt-10 md:mt-32 xl:mt-40 max-w-[400px] md:max-w-3xl lg:max-w-4xl xl:max-w-6xl mx-auto mb-8 px-6 md:px-0"
-      >
+      <div className="grid md:flex justify-between mt-10 md:mt-32 xl:mt-40 max-w-[400px] md:max-w-3xl lg:max-w-4xl xl:max-w-6xl mx-auto mb-8 px-6 md:px-0">
         <p className="text-2xl md:text-3xl text-black text-left font-bold">
           Top
           <br /> Categories

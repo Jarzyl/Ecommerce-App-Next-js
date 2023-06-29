@@ -63,6 +63,7 @@ export default function ProductCart({
     }
     setIsLiked(!isLiked);
   }
+
   function addToCart() {
     addProduct(_id);
   }
@@ -94,20 +95,16 @@ export default function ProductCart({
         />
       </div>
       <div className="px-3 pb-2">
-      <h3 className="text-lg text-left text-black font-bold mt-1">
-        {name}
-      </h3>
-      <p className="text-sm mt-1 text-gray-500">{description}</p>
-      <div className="flex mt-2">
-        <div className="text-lg font-medium grow text-gray-800">
-          {price}$
+        <h3 className="text-lg text-left text-black font-bold mt-1">{name}</h3>
+        <p className="text-sm mt-1 text-gray-500">{description}</p>
+        <div className="flex mt-2">
+          <div className="text-lg font-medium grow text-gray-800">{price}$</div>
+          <BsCart
+            onClick={addToCart}
+            className="text-gray-600 cursor-pointer"
+            size={25}
+          />
         </div>
-        <BsCart
-          onClick={addToCart}
-          className="text-gray-600 cursor-pointer"
-          size={25}
-        />
-      </div>
       </div>
     </div>
   );
